@@ -1,3 +1,95 @@
 /*
- * Estilos de tu proyecto
- */
+* Estilos de tu proyecto
+*/
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+body{
+  margin: 0;
+  font-family: 'Roboto', 'Montserrat', sans-serif;
+}
+a{
+  text-decoration: none;
+  color: #fff;
+}
+.top-bar{
+  background-color: #fafafa;
+}
+ul {
+  list-style: none;
+  display: flex;
+  margin: 0 auto;
+  padding: 10px;
+}
+li:first-child{
+  flex-grow: 2;
+  align-self: center;
+}
+li:last-child{
+  flex-grow: 0;
+  font-size:40px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+.logo{
+  width: 100%;
+  height: 60px;
+}
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #fafafa;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+.current-user{
+  display: flex;
+}
+.avatar{
+  width: 70px;
+  height: 70px;
+  position: relative;
+  left: 30px;
+}
+.user-name{
+  font-size: 16px;
+  position: relative;
+  top: 20px;
+  left: 40px;
+  color: #818181;
+}
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+.sidenav a:last-child{
+  position: relative;
+  bottom: 0;
+}
+.sidenav a:hover {
+  color: #2d2d2a;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
