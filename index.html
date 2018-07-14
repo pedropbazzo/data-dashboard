@@ -1,40 +1,162 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Data Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/main.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900|Roboto:100,300,400,500,700,900" rel="stylesheet">
-  </head>
-  <body>
-    <header>
-      <nav class="top-bar">
-        <ul>
-          <li><img alt="Laboratoria, código que transforma" class="logo" src="assets/images/logo-laboratoria.svg"></li>
-          <li><span onclick="openNav()">&#9776;</span></li>
-        </ul>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data Dashboard</title>
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900|Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+  <!-- Nosso CSS -->
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <header>
+    <nav class="top-bar">
+      <ul class="main-top">
+        <li><img alt="Laboratoria, código que transforma" class="logo" src="assets/images/logo-laboratoria.svg"></li>
+        <li><span class="menu-burguer" onclick="openNav()">&#9776;</span></li>
+      </ul>
 
-      </nav>
-    </header>
-
-    <div id="mySidenav" class="sidenav">
+    </nav>
+    <div id="sideNav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
       <div class="current-user">
         <span><img alt="Avatar de perfil" class="avatar" src="assets/images/people.svg" ></span>
         <span class="user-name">Vanessa Pinheiro<br>Trainer Manager</span>
       </div>
-      <a href="#">Perfil</a>
-      <a href="#">Dashboard</a>
-      <a href="#">Configurações</a>
-      <a href="#">Sair</a>
+      <a href="#"><i class="fas fa-user-circle"></i>Perfil</a>
+      <a href="#"><i class="far fa-calendar-alt"></i>Dashboard</a>
+      <a href="#"><i class="fas fa-cog"></i>Configurações</a>
+      <a href="#"><i class="fas fa-sign-out-alt"></i>Sair</a>
     </div>
-    <section>
-      
-    </section>
-		<!-- Base de datos -->
-		<script src="./js/data.js"></script>
-		<!-- Aquí va tus archivos JS -->
-    <script src="./js/app.js"></script>
-  </body>
+  </header>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- títulos das abas -->
+          <ul class="nav nav-tabs text-size" role="tablist">
+            <li role="presentation" class="active"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">Overview</a></li>
+            <li role="presentation"><a href="#estudantes" aria-controls="estudantes" role="tab" data-toggle="tab">Estudantes</a></li>
+          </ul>
+          <!-- Conteúdo das Abas -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="overview">
+              <div class="row">
+                <div class="col-md-3">
+                  <div id="heads">
+                    <select name="sedes" id="selectHeads">
+                      <option value="selecione">Selecione a sede</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div id="generation">
+                    <select name="generation" id="selectGeneration">
+                      <option value="selecione">Selecione a geração</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div id="search">
+                    <input type="text" id="searchtext" placeholder="Buscar "/>
+                    <button id="btnsearch"><i class="fas fa-search"></i></button>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <h3>Total de Alunas matriculadas</h3>
+                  <img src="assets/images/bar-graph.png" alt="">
+                </div>
+                <div class="col-md-4">
+                  <h3>Resultados obtidos durante o bootcamp</h3>
+                  <img src="assets/images/graph.png" alt="">
+                </div>
+                <div class="col-md-4">
+                  <h3>Recomendação de empregabilidade (Net Promoter Score)</h3>
+                  <img src="assets/images/graph.png" alt="">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <h3>Tech Skills</h3>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8">
+                  <img src="assets/images/rectangular-graphic.png" alt="">
+                </div>
+                <div class="col-md-4">
+                  <img src="assets/images/circle-graphic.png" alt="">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <h3>Life Skills</h3>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8">
+                  <img src="assets/images/rectangular-graphic.png" alt="">
+                </div>
+                <div class="col-md-4">
+                  <img src="assets/images/circle-graphic.png" alt="">
+                </div>
+              </div>
+            <div class="row">
+              <div class="col-md-4">
+                <h3>Satisfação das Alunas</h3>
+                <img src="assets/images/graph.png" alt="">
+              </div>
+              <div class="col-md-4">
+                <h3>Potuação dos Mentores</h3>
+                <img src="assets/images/graph.png" alt="">
+              </div>
+              <div class="col-md-4">
+                <h3>Pontuação dos Jedis Master</h3>
+                <img src="assets/images/graph.png" alt="">
+              </div>
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="estudantes"></div>
+            <div class="row">
+              <div class="col-md-4">
+                <h3>Especializações</h3>
+                <div id="skills">
+                  <input type="checkbox" name="Skills" value="Front end Designer"> Front end Designer<br>
+                  <input type="checkbox" name="Skills" value="UX Designer" checked>UX Designerr<br>
+                  <input type="checkbox" name="Skills" value="Javascript" checked>Javascript<br>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="developers">
+                  <div class="people">
+                    <img src="" alt="">
+                    <h4></h4>
+                    <p></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Fim -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Base de dados -->
+  <script src="./js/data.js"></script>
+  <!-- Nosso JS -->
+  <script src="./js/app.js"></script>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js"></script>
+</body>
 </html>
