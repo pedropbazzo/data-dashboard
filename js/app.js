@@ -14,11 +14,11 @@
 var dropHeadMenu = document.getElementById("selectHeads");
 dropHeadMenu.addEventListener("change", loadData);
 
-//var dropGenerationMenu = document.getElementById("selectGeneration");
-//dropGenerationMenu.addEventListener ("change", );
+var dropGenerationMenu = document.getElementById("selectGeneration");
+//dropGenerationMenu.addEventListener ("change", loadData);
 
 window.onload = loadHeadMenu();
-// carrega o generationMenu de acordo com a sede
+//window.onload = loadGenerationMenu();
 
 function loadHeadMenu() {
 	var option = document.createElement("option");
@@ -33,6 +33,23 @@ function loadHeadMenu() {
 	}	
 }
 
+function loadGenerationMenu(headSelected) {
+
+	var generation = document.createElement("option");
+	generation.innerHTML = "Selecione a geração";
+	generation.value = "none";
+	dropGenerationMenu.appendChild(generation);
+	
+	for(generation in data[headSelected]){
+		var genItem = document.createElement("option");
+		genItem.innerHTML = generation;
+		genItem.value = generation;
+		dropGenerationMenu.appendChild(genItem);
+
+	}
+}
+
+
 //aqui carrega os dados e faz o generationMenu de acordo com sede
 function loadData() {
 	var headSelected = dropHeadMenu.value;
@@ -40,8 +57,10 @@ function loadData() {
 	for(generation in data[headSelected]) {
 		var numberStudentes = data[headSelected][generation]["students"].length;
 		totalStudents += numberStudentes;
+		console.log(generation);
 	}
 	document.getElementById("total-students").innerHTML = 'Total de alunas matriculadas na sede: ' + totalStudents;	
+	loadGenerationMenu(headSelected);
 }
 
 
