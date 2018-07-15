@@ -33,10 +33,16 @@ function loadHeadMenu() {
 	}	
 }
 
+//aqui carrega os dados e faz o generationMenu de acordo com sede
 function loadData() {
-	
+	var headSelected = dropHeadMenu.value;
+	var totalStudents = 0;
+	for(generation in data[headSelected]) {
+		var numberStudentes = data[headSelected][generation]["students"].length;
+		totalStudents += numberStudentes;
+	}
+	document.getElementById("total-students").innerHTML = 'Total de alunas matriculadas na sede: ' + totalStudents;	
 }
-
 
 
 
