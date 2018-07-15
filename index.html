@@ -52,6 +52,10 @@
                   <div id="heads">
                     <select name="sedes" id="selectHeads">
                       <option value="selecione">Selecione a sede</option>
+                      <option value="AQP">AQP</option>
+                      <option value="CDMX">CDMX</option>
+                      <option value="LIM">LIM</option>
+                      <option value="SCL">SCL</option>
                     </select>
                   </div>
                 </div>
@@ -59,10 +63,16 @@
                   <div id="generation">
                     <select name="generation" id="selectGeneration">
                       <option value="selecione">Selecione a geração</option>
+                      <option value="2016-2">2016-2</option>
+                      <option value="2017-1">2017-1</option>
+                      <option value="2017-2">2017-2</option>
                     </select>
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
+                  <button id="btn-filter" onclick="filter()">Filtra</button>
+                </div>
+                <div class="col-md-4">
                   <div id="search">
                     <input type="text" id="searchtext" placeholder="Buscar "/>
                     <button id="btnsearch"><i class="fas fa-search"></i></button>
