@@ -63,20 +63,3 @@ function loadData() {
 	loadGenerationMenu(headSelected);
 }
 
-
-
-
-// Puedes hacer uso de la base de datos a través de la variable `data`
-//console.log(data);
-
-
-/*//Aplicacao de filtro para sede e geracao
-function filter() {
-	var headOptions = document.getElementById( "selectHeads");
-	var headSelected = headOptions.options[headOptions.selectedIndex].value;
-	
-	var generationOptions = document.getElementById( "selectGeneration");
-	var generationSelected = generationOptions.options[generationOptions.selectedIndex].value;
-
-	//alert(headSelected + generationSelected);
-}*/
