@@ -15,10 +15,10 @@ closeSideNav.addEventListener("click", closeNav);
 
 //Menu dinamico de sedes e geracoes
 var dropHeadMenu = document.getElementById("selectHeads");
-dropHeadMenu.addEventListener("change", loadData);
+dropHeadMenu.addEventListener("change", loadGenerationMenu);
 
 var dropGenerationMenu = document.getElementById("selectGeneration");
-//dropGenerationMenu.addEventListener ("change", loadData);
+dropGenerationMenu.addEventListener ("change", loadData);
 
 window.onload = loadHeadMenu();
 //window.onload = loadGenerationMenu();
@@ -36,7 +36,8 @@ function loadHeadMenu() {
 	}
 }
 
-function loadGenerationMenu(headSelected) {
+function loadGenerationMenu() {
+	var headSelected = dropHeadMenu.value;
 	dropGenerationMenu.innerHTML = "";
 
 	var generation = document.createElement("option");
@@ -49,22 +50,97 @@ function loadGenerationMenu(headSelected) {
 		genItem.innerHTML = generation;
 		genItem.value = generation;
 		dropGenerationMenu.appendChild(genItem);
-
 	}
 }
 
-
-//aqui carrega os dados e faz o generationMenu de acordo com sede
 function loadData() {
+	enrollmentStudents();
+	achievements();
+}
+
+function enrollmentStudents() {
 	var headSelected = dropHeadMenu.value;
+	var generationSelected = dropGenerationMenu.value;
+
+	var totalStudents = data[headSelected][generationSelected]["students"].length;
+	document.getElementById("total-students").innerHTML = 'Total de alunas matriculadas na sede: ' + totalStudents;	
+
+	var quittingStudents = 0;
+	for (i in data[headSelected][generationSelected]["students"]){
+		if (data[headSelected][generationSelected]["students"][i]["active"] == false) {
+			quittingStudents += 1;
+		}
+	}
+	var rateQuitStudent = (quittingStudents/totalStudents)*100;
+	//console.log(totalStudents);
+	//console.log(quittingStudents);
+	//console.log(rateQuitStudent);
+	document.getElementById("quitting-students").innerHTML = "Alunas desistentes: " + rateQuitStudent.toFixed(2) + "%"
+}
+
+function achievements() {
+
+	var head = dropHeadMenu.value;
+	var generation = dropGenerationMenu.value;
+
+
+	var quantitySprints = data[head][generation]['ratings'].length;
+
+	//for ( var i; i <)
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*function loadData() {
+
+	var headSelected = dropHeadMenu.value;
+	loadGenerationMenu(headSelected);
+
 	var totalStudents = 0;
 	for(generation in data[headSelected]) {
 		var numberStudentes = data[headSelected][generation]["students"].length;
 		totalStudents += numberStudentes;
-		console.log(generation);
 	}
+<<<<<<< HEAD
 	document.getElementById("total-students").innerHTML = 'Total de alunas matriculadas na sede: ' + totalStudents;
 	loadGenerationMenu(headSelected);
 }
 
 //Inclusão de gráficos
+=======
+	document.getElementById("total-students").innerHTML = 'Total de alunas matriculadas na sede: ' + totalStudents;	
+}
+
+function reloadData() { //mostra dados de acordo com geracao
+	console.log(dropGenerationMenu.value);
+}*/
+				
+>>>>>>> 1cc1e38144ad74a6b5915d6fced085cafdfbe8c7
