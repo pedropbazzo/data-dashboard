@@ -13,18 +13,19 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
   <!-- Nosso CSS -->
   <link rel="stylesheet" href="css/main.css">
+  <!--Load the AJAX API-->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
   <header>
     <nav class="top-bar">
       <ul class="main-top">
         <li><img alt="Laboratoria, código que transforma" class="logo" src="assets/images/logo-laboratoria.svg"></li>
-        <li><span class="menu-burguer" onclick="openNav()">&#9776;</span></li>
+        <li><span class="menu-burguer" id="openNav">&#9776;</span></li>
       </ul>
-
     </nav>
     <div id="sideNav" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="javascript:void(0)" class="closebtn" id="closeNav">&times;</a>
       <div class="current-user">
         <span><img alt="Avatar de perfil" class="avatar" src="assets/images/people.svg" ></span>
         <span class="user-name">Vanessa Pinheiro<br>Training Manager</span>
@@ -48,7 +49,7 @@
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="overview">
               <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-6">
                   <div id="heads">
                     <select name="sedes" id="selectHeads">
                       <!--
@@ -60,7 +61,7 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-6">
                   <div id="generation">
                     <select name="generation" id="selectGeneration">
                       <!--
@@ -70,12 +71,6 @@
                       <option value="2017-2">2017-2</option>
                       -->
                     </select>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div id="search">
-                    <input type="text" id="searchtext" placeholder="Buscar "/>
-                    <button id="btnsearch"><i class="fas fa-search"></i></button>
                   </div>
                 </div>
               </div>
@@ -146,17 +141,33 @@
                 </div>
               </div>
               <div class="col-md-8">
+                <div id="search">
+                  <input type="text" id="searchtext" placeholder="Buscar "/>
+                  <button id="btnsearch"><i class="fas fa-search"></i></button>
+                </div>
                 <div class="developers">
                   <div class="people">
-                    <img src="" alt="">
-                    <h4></h4>
-                    <p></p>
+                    <img class="photo" src="https://www.thehappycatsite.com/wp-content/uploads/2017/10/best-treats-for-kittens.jpg" alt="">
+                    <div class="devInfo">
+                      <h4>Diana Navarro</h4>
+                      <h5>Frontend Developer</h5>
+                      <div class="skills">
+                        <p>JavaScript</p>
+                        <p>APIs</p>
+                        <p>JQUERY</p>
+                      </div>
+                    </div>
+                    <div class="points">
+                      <p class="item-point"><span>95%</span><span>Tech Skills</span></p>
+                      <p class="item-point"><span>92%</span><span>Life Skills</span></p>
+                      <p class="item-point"><span>90%</span><span>English Skills</span></p>
+                    </div>
+                    <a class="seeProfile" href="#" type="button">Ver perfil<i class="fa fa-angle-double-right"></i></a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
           </div>
           <!-- Fim -->
         </div>
