@@ -34,6 +34,7 @@ function loadHeadMenu() {
 }
 
 function loadGenerationMenu(headSelected) {
+	dropGenerationMenu.innerHTML = "";
 
 	var generation = document.createElement("option");
 	generation.innerHTML = "Selecione a geração";
@@ -63,3 +64,4 @@ function loadData() {
 	loadGenerationMenu(headSelected);
 }
 
+				
