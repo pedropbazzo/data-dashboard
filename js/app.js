@@ -2,12 +2,15 @@
  * Funcionalidad de tu producto
  */
  //Funcionalidade do menu hamburguer
+ var openSideNav = document.getElementById("openNav");
+ openSideNav.addEventListener("click", openNav);
  function openNav() {
  	document.getElementById("sideNav").style.width = "250px";
  }
-
+var closeSideNav = document.getElementById("closeNav");
+closeSideNav.addEventListener("click", closeNav);
  function closeNav() {
-  document.getElementById("sideNav").style.width = "0"; 
+  document.getElementById("sideNav").style.width = "0";
  }
 
 //Menu dinamico de sedes e geracoes
@@ -30,7 +33,7 @@ function loadHeadMenu() {
 		optionItem.innerHTML = head;
 		optionItem.value = head;
 		dropHeadMenu.appendChild(optionItem);
-	}	
+	}
 }
 
 function loadGenerationMenu(headSelected) {
@@ -40,7 +43,7 @@ function loadGenerationMenu(headSelected) {
 	generation.innerHTML = "Selecione a geração";
 	generation.value = "none";
 	dropGenerationMenu.appendChild(generation);
-	
+
 	for(generation in data[headSelected]){
 		var genItem = document.createElement("option");
 		genItem.innerHTML = generation;
@@ -60,8 +63,8 @@ function loadData() {
 		totalStudents += numberStudentes;
 		console.log(generation);
 	}
-	document.getElementById("total-students").innerHTML = 'Total de alunas matriculadas na sede: ' + totalStudents;	
+	document.getElementById("total-students").innerHTML = 'Total de alunas matriculadas na sede: ' + totalStudents;
 	loadGenerationMenu(headSelected);
 }
 
-				
+//Inclusão de gráficos
