@@ -81,10 +81,16 @@ function achievements() {
 	var generation = dropGenerationMenu.value;
 
 
-	var quantitySprints = data[head][generation]['ratings'].length;
+	var quantitySprints = data[head][generation]["ratings"].length;
 
-	//for ( var i; i <)
+	for (var j = 0; j < quantitySprints; j++) {
+		console.log("SPRINT" + j+1);
+		for ( i in data[head][generation]['students'] ) {
+			//acessa o array de sprints de cada aluna
+			console.log(data[head][generation]['students'][i]["sprints"][j]["score"]);
 
+		}
+	}
 
 }
 
