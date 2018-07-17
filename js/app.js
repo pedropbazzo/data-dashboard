@@ -102,18 +102,21 @@ function achievements() {
 	var sumHsePoints = 0;
 
 	for(var j = 0; j < quantitySprints; j++){
-		//console.log("SPRINT " + (j+1));
 		sumTechPoints = 0;
 		sumHsePoints = 0;
-		for( i in data[head][generation]['students'] ){
+
+		for( i in data[head][generation]["students"] ){
 			//acessa o array de sprints de cada aluna
-			if( data[head][generation]['students'][i]["sprints"][j]["score"]["tech"] >= techAveragePoints){
-				sumTechPoints +=1;
+			console.log("index de estudantes: " + i);
+			if (data[head][generation]["students"][i]["sprints"].length != 0){
+				console.log("tamanho array" + data[head][generation]["students"][i]["sprints"].length);
+				if( data[head][generation]["students"][i]["sprints"][j]["score"]["tech"] >= techAveragePoints){
+					sumTechPoints +=1;
+				}
+				if(data[head][generation]["students"][i]["sprints"][j]["score"]["hse"] >= hseAveragePoints){
+					sumHsePoints += 1;
+				}
 			}
-			if(data[head][generation]['students'][i]["sprints"][j]["score"]["hse"] >= hseAveragePoints){
-				sumHsePoints += 1;
-			}
-			//console.log(data[head][generation]['students'][i]["sprints"][j]["score"]["tech"]);
 		}
 		document.getElementById("tech-skill-sp" + (j+1)).innerHTML = "Sprint " + (j + 1) + ": " + sumTechPoints + " " + ((sumTechPoints/allStudents)*100).toFixed(2) + "%";
 		document.getElementById("hse-skill-sp" + (j+1)).innerHTML = "Sprint " + (j + 1) + ": " + sumHsePoints+ " " + ((sumHsePoints/allStudents)*100).toFixed(2) + "%";
@@ -128,12 +131,12 @@ function netPromoScore(){
 	var ratingsLength = data[head][generation]['ratings'].length;
 
 	for(var i = 0; i < ratingsLength; i++){
-		console.log("SPRINT " + (i+1));
+		//console.log("SPRINT " + (i+1));
 
 		//var nps = data[head][generation]['ratings'][i];
 		var promoters = data[head][generation]['ratings'][i]['nps']['promoters'];
 		var detractors = data[head][generation]['ratings'][i]['nps']['detractors'];
-		console.log(promoters)
+		//console.log(promoters)
 
 		
 	}
