@@ -13,6 +13,9 @@ function closeNav() {
   document.getElementById("sideNav").style.width = "0";
 }
 
+// Load the Visualization API and the corechart package.
+ google.charts.load('current', {'packages':['corechart']});
+
 //Menu dinamico de sedes e geracoes
 var dropHeadMenu = document.getElementById("selectHeads");
 dropHeadMenu.addEventListener("change", loadGenerationMenu);
@@ -75,7 +78,10 @@ function enrollmentStudents() {
   //console.log(totalStudents);
   //console.log(quittingStudents);
   //console.log(rateQuitStudent);
-  document.getElementById("quitting-students").innerHTML = "Alunas desistentes: " + rateQuitStudent.toFixed(2) + "%"
+  document.getElementById("quitting-students").innerHTML = "Alunas desistentes: " + rateQuitStudent.toFixed(2) + "%";
+
+  //google.charts.setOnLoadCallback(drawChart);
+
 }
 
 function achievements() {
@@ -84,12 +90,16 @@ function achievements() {
   var generation = dropGenerationMenu.value;
 
 	var quantitySprints = data[head][generation]["ratings"].length;
-
+	var sumTechPoints = 0;
+	var techPointsAverage = 0.7*1800;
 	for (var j = 0; j < quantitySprints; j++) {
-		console.log("SPRINT" + j+1);
+		console.log("SPRINT" + (j+1));
 		for ( i in data[head][generation]['students'] ) {
 			//acessa o array de sprints de cada aluna
-			console.log(data[head][generation]['students'][i]["sprints"][j]["score"]);
+			if ( data[head][generation]['students'][i]["sprints"][j]["score"]["tech"] > techPointsAverage) {
+				sumTechPoints +=1;
+			}
+			console.log(data[head][generation]['students'][i]["sprints"][j]["score"]["tech"]);
 
 		}
 	}
