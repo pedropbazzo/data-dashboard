@@ -21,10 +21,10 @@ function closeNav() {
  google.charts.load('current', {'packages':['corechart']});
 
 //Menu dinamico de sedes e geracoes
-var dropHeadMenu = document.getElementById("selectHeads");
+var dropHeadMenu = document.getElementById("select-heads");
 dropHeadMenu.addEventListener("change", loadGenerationMenu);
 
-var dropGenerationMenu = document.getElementById("selectGeneration");
+var dropGenerationMenu = document.getElementById("select-generation");
 dropGenerationMenu.addEventListener ("change", loadData);
 
 window.onload = loadHeadMenu();
@@ -82,9 +82,6 @@ function enrollmentStudents() {
     }
   }
   var rateQuitStudent = (quittingStudents/allStudents)*100;
-  //console.log(allStudents);
-  //console.log(quittingStudents);
-  //console.log(rateQuitStudent);
   document.getElementById("quitting-students").innerHTML = "Alunas desistentes: " + rateQuitStudent.toFixed(2) + "%";
 
   //google.charts.setOnLoadCallback(drawChart);
@@ -95,6 +92,8 @@ function achievements() {
 
   var head = dropHeadMenu.value;
   var generation = dropGenerationMenu.value;
+  var allStudents = data[head][generation]["students"].length;
+
 
 	var quantitySprints = data[head][generation]["ratings"].length;
 	var techAveragePoints = 0.7*techMaxPoints;
@@ -103,7 +102,7 @@ function achievements() {
 	var sumHsePoints = 0;
 
 	for(var j = 0; j < quantitySprints; j++){
-		console.log("SPRINT " + (j+1));
+		//console.log("SPRINT " + (j+1));
 		sumTechPoints = 0;
 		sumHsePoints = 0;
 		for( i in data[head][generation]['students'] ){
@@ -116,14 +115,30 @@ function achievements() {
 			}
 			//console.log(data[head][generation]['students'][i]["sprints"][j]["score"]["tech"]);
 		}
-		document.getElementById("tech-skill-sp" + (j+1)).innerHTML = "Sprint " + j + ": " + sumTechPoints;
-		document.getElementById("hse-skill-sp" + (j+1)).innerHTML = "Sprint " + j + ": " + sumHsePoints;
+		document.getElementById("tech-skill-sp" + (j+1)).innerHTML = "Sprint " + (j + 1) + ": " + sumTechPoints + " " + ((sumTechPoints/allStudents)*100).toFixed(2) + "%";
+		document.getElementById("hse-skill-sp" + (j+1)).innerHTML = "Sprint " + (j + 1) + ": " + sumHsePoints+ " " + ((sumHsePoints/allStudents)*100).toFixed(2) + "%";
 		//console.log(sumHsePoints);
 
 	}
 }
 
 function netPromoScore(){
+	var head = dropHeadMenu.value;
+  var generation = dropGenerationMenu.value;
+	var ratingsLength = data[head][generation]['ratings'].length;
+
+	for(var i = 0; i < ratingsLength; i++){
+		console.log("SPRINT " + (i+1));
+
+		//var nps = data[head][generation]['ratings'][i];
+		var promoters = data[head][generation]['ratings'][i]['nps']['promoters'];
+		var detractors = data[head][generation]['ratings'][i]['nps']['detractors'];
+		console.log(promoters)
+
+		
+	}
+
+
 
   /*[Promoters] = [Respostas 9 ou 10] / [Total respostas] * 100
   [Passive] = [Respostas 7 a 8] / [Total Respostas] * 100
