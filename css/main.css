@@ -213,8 +213,8 @@ select {
   position: absolute;
   top: 0;
   left: 0;
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
   background-color: #eee;
 }
 
@@ -242,8 +242,8 @@ select {
 
 /* customizar checkmark */
 .ability .checkmark:after {
-  left: 9px;
-  top: 5px;
+  left: 7px;
+  top: 2px;
   width: 8px;
   height: 12px;
   border: solid white;
@@ -253,7 +253,7 @@ select {
   transform: rotate(45deg);
 }
 
-.people{
+#people{
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -265,7 +265,7 @@ select {
   -moz-box-shadow: 10px 11px 20px -4px rgba(0,0,0,0.43);
   box-shadow: 10px 11px 20px -4px rgba(0,0,0,0.43);
 }
-.people p{
+#people p{
   color:#000;
   padding: 10px;
   text-align: center;
