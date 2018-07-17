@@ -62,8 +62,8 @@ function enrollmentStudents() {
   var headSelected = dropHeadMenu.value;
   var generationSelected = dropGenerationMenu.value;
 
-  var totalStudents = data[headSelected][generationSelected]["students"].length;
-  document.getElementById("total-students").innerHTML = 'Total de alunas matriculadas na sede: ' + totalStudents;
+  var allStudents = data[headSelected][generationSelected]["students"].length;
+  document.getElementById("all-students").innerHTML = 'Total de alunas matriculadas na sede: ' + allStudents;
 
   var quittingStudents = 0;
   for (i in data[headSelected][generationSelected]["students"]){
@@ -71,11 +71,12 @@ function enrollmentStudents() {
       quittingStudents += 1;
     }
   }
-  var rateQuitStudent = (quittingStudents/totalStudents)*100;
-  //console.log(totalStudents);
+  var rateQuitStudent = (quittingStudents/allStudents)*100;
+  //console.log(allStudents);
   //console.log(quittingStudents);
   //console.log(rateQuitStudent);
   document.getElementById("quitting-students").innerHTML = "Alunas desistentes: " + rateQuitStudent.toFixed(2) + "%"
+
 }
 
 function achievements() {
@@ -97,8 +98,71 @@ function achievements() {
 }
 
 
+  /*
+function netPromoScore(){
+
+  [Promoters] = [Respostas 9 ou 10] / [Total respostas] * 100
+  [Passive] = [Respostas 7 a 8] / [Total Respostas] * 100
+  [Detractors] = [Respostas entre 1 e 6] / [Total Respostas] * 100
+
+  [NPS] = [Promoters] - [Detractors]
 
 
+
+}
+*/
+
+function loadDevs(){
+  var dropHead = dropHeadMenu.value;
+  var dropGeneration = dropGenerationMenu.value;
+  var devsList = document.getElementById("");
+  listaProgramadoras.innerHTML = "";
+  for(turma in data[sede]){
+    for(i in data[sede][turma]["students"]){
+      var img = document.createElement('img');
+      img.src = data[sede][turma]["students"][i]["photo"];
+      listaProgramadoras.appendChild(img);
+    }
+  }
+
+};
+
+
+
+/*
+// Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+        var
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Mushrooms', 3],
+          ['Onions', 1],
+          ['Olives', 1],
+          ['Zucchini', 1],
+          ['Pepperoni', 2]
+        ]);
+
+        // Set chart options
+        var options = {'title':'How Much Pizza I Ate Last Night',
+                       'width':400,
+                       'height':300};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+*/
 
 
 
@@ -129,12 +193,12 @@ function achievements() {
 var headSelected = dropHeadMenu.value;
 loadGenerationMenu(headSelected);
 
-var totalStudents = 0;
+var allStudents = 0;
 for(generation in data[headSelected]) {
 var numberStudentes = data[headSelected][generation]["students"].length;
-totalStudents += numberStudentes;
+allStudents += numberStudentes;
 }
-document.getElementById("total-students").innerHTML = 'Total de alunas matriculadas na sede: ' + totalStudents;
+document.getElementById("all-students").innerHTML = 'Total de alunas matriculadas na sede: ' + allStudents;
 loadGenerationMenu(headSelected);
 }*/
 

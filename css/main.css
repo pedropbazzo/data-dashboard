@@ -185,6 +185,74 @@ select {
   color:#000;
   padding: 5px;
 }
+.select-skills{
+  padding-top: 30px;
+}
+.ability {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* esconde checkbox padrão */
+.ability input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* criar checkbox customizado*/
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* cinza escuro para o checkbox com o mouse hover */
+.ability:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* assim que marcado o checkbox fica amarelo */
+.ability input:checked ~ .checkmark {
+  background-color: #ffe521;
+}
+
+/* esconder o checkmark quando desmarcado */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* mostrar o checkmark marcado */
+.ability input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* customizar checkmark */
+.ability .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 8px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
 .people{
   display: flex;
   justify-content: space-around;
