@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<!-- pegar dados da biblioteca de gráfico-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +16,6 @@
   <!-- Nosso CSS -->
   <link rel="stylesheet" href="css/main.css">
   <!--Load the AJAX API-->
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
   <header>
@@ -67,6 +68,7 @@
                   <h3>Total de alunas matriculadas</h3>
                   <p id="all-students"></p>
                   <p id="quitting-students"></p>
+                  <div id="drawChart"> </div>
                 </div>
                 <div class="col-md-4">
                   <h3>Resultados durante o bootcamp</h3>
