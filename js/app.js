@@ -1,6 +1,10 @@
 /*
 * Funcionalidad de tu producto
 */
+
+var techMaxPoints = 1800;
+var hseMaxPoints = 1200;
+
 //Funcionalidade do menu hamburguer
 var openSideNav = document.getElementById("openNav");
 openSideNav.addEventListener("click", openNav);
@@ -90,20 +94,28 @@ function achievements() {
   var generation = dropGenerationMenu.value;
 
 	var quantitySprints = data[head][generation]["ratings"].length;
+	var techAveragePoints = 0.7*techMaxPoints;
+	var hseAveragePoints = 0.7*hseMaxPoints;
 	var sumTechPoints = 0;
-	var techPointsAverage = 0.7*1800;
-	for (var j = 0; j < quantitySprints; j++) {
-		console.log("SPRINT" + (j+1));
-		for ( i in data[head][generation]['students'] ) {
+	var sumHsePoints = 0;
+
+	for(var j = 0; j < quantitySprints; j++){
+		console.log("SPRINT " + (j+1));
+		for( i in data[head][generation]['students'] ){
 			//acessa o array de sprints de cada aluna
-			if ( data[head][generation]['students'][i]["sprints"][j]["score"]["tech"] > techPointsAverage) {
+			if( data[head][generation]['students'][i]["sprints"][j]["score"]["tech"] >= techAveragePoints){
 				sumTechPoints +=1;
 			}
-			console.log(data[head][generation]['students'][i]["sprints"][j]["score"]["tech"]);
-
+			if(data[head][generation]['students'][i]["sprints"][j]["score"]["hse"] >= hseAveragePoints){
+				sumHsePoints += 1;
+			}
+			//console.log(data[head][generation]['students'][i]["sprints"][j]["score"]["tech"]);
 		}
-	}
+		document.getElementById("tech-skill-sp" + (j+1)).innerHTML = "Sprint " + j + ": " + sumTechPoints;
+		document.getElementById("hse-skill-sp" + (j+1)).innerHTML = "Sprint " + j + ": " + sumHsePoints;
 
+		console.log(sumHsePoints);
+	}
 }
 
 
