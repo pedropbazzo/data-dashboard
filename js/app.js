@@ -115,17 +115,21 @@ function netPromoScore(){
 function loadDevs(){
   var dropHead = dropHeadMenu.value;
   var dropGeneration = dropGenerationMenu.value;
-  var devsList = document.getElementById("");
-  listaProgramadoras.innerHTML = "";
-  for(turma in data[sede]){
-    for(i in data[sede][turma]["students"]){
+  var devsList = document.getElementById("developers");
+  devList.innerHTML = "";
+  for(generation in data[head]){
+    for(i in data[head][generation]['students']){
+      var people = document.createElement('div');
+      people.classList.add('people');
       var img = document.createElement('img');
-      img.src = data[sede][turma]["students"][i]["photo"];
-      listaProgramadoras.appendChild(img);
+      img.classList.add('photo');
+      img.src = data[head][generation]['students'][i]['photo'];
+      devList.appendChild(people);
+      people.appendChild(img);
     }
   }
 
-};
+}
 
 
 
