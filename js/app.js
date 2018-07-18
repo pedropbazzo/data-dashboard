@@ -22,7 +22,7 @@ google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
 google.charts.load('current', {packages: ['corechart', 'bar']});
-google.charts.setOnLoadCallback(drawBasic);
+//google.charts.setOnLoadCallback(drawBasic);
 
 
 
@@ -84,12 +84,13 @@ function drawChart(activeStudents, quittingStudents) {
     ['Inativas', quittingStudents]
   ]);
 
-  var options = {
+ /* var options = {
     title: 'Grafico 1'
-  };
+  };*/
   var chart = new google.visualization.PieChart(document.getElementById('drawChart'));
 
-  chart.draw(data, options);
+  //chart.draw(data, options);
+  chart.draw(data);
 }
 
 function enrollmentStudents() {
@@ -121,14 +122,16 @@ function enrollmentStudents() {
 }
 
 
-function drawBasic() {
+function drawBasic(array) {
+				var dataArray = [];
+				dataArray = array;
+			 
         var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2004',  1000,      400],
-          ['2005',  1170,      460],
-          ['2006',  660,       1120],
-          ['2007',  1030,      540]
-        ]);
+        	[]
+        	]);
+
+        //var googleChartData = google.visualization.arrayToDataTable($.parseJSON(chartData));
+
 
         var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
         chart.draw(data, {width: 400, height: 240, title: 'Company Performance'});
@@ -169,16 +172,33 @@ function achievements() {
 		}
 		averageTechStud += sumTechPoints;
 		averageHseStud += sumHsePoints;
-		console.log("tech: "+averageTechStud);
-		console.log("HSE"+ averageHseStud);
+		//console.log("tech: "+averageTechStud);
+		//console.log("HSE"+ averageHseStud);
 		document.getElementById("tech-skill-sp" + (j + 1)).innerHTML = "Sprint " + (j + 1) + ": " + sumTechPoints + " " + ((sumTechPoints/allStudents)*100).toFixed(2) + "%";
 		document.getElementById("hse-skill-sp" + (j + 1)).innerHTML = "Sprint " + (j + 1) + ": " + sumHsePoints+ " " + ((sumHsePoints/allStudents)*100).toFixed(2) + "%";
+		
+		//Cria o array para fazer o gráfico:
+		dataArray[0] = [];
+		dataArray[0][0] = "Sprint";
+		dataArray[0][1] = "Alunas";
+
+		dataArray[j+1] = [];
+		for (i = 0; i < dataArray[0].length; i++) {
+			if(i == 0) {
+				dataArray[j+1][i] = "Sprint" + (j+1);
+			}else {
+				dataArray[j+1][i] = sumTechPoints;
+			}
+		}
+	
+		
 	}
+	console.log(dataArray);
 	averageTechStud = (averageTechStud/quantitySprints).toFixed(2);
 	averageHseStud = (averageHseStud/quantitySprints).toFixed(2);
 	document.getElementById("average-tech-stud").innerHTML = "Média No. Estud Tech: " + (averageTechStud) + " " +((averageTechStud/allStudents)*100).toFixed(2) + "%";
 	document.getElementById("average-hse-stud").innerHTML = "Média No. Estud HSE: " + (averageHseStud) + " " + ((averageHseStud/allStudents)*100).toFixed(2) + "%";
-
+	drawBasic(dataArray);
 }
 
 function netPromoScore(){
