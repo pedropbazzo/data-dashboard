@@ -97,6 +97,7 @@ function loadData() {
   netPromoScore();
   mentorRating();
   jedisRating();
+  studentsSatisfaction()
 }
 
 function drawChart(activeStudents, quittingStudents) {
@@ -271,8 +272,8 @@ function studentsPoints() {
 	var belowAverageTechPoints = allStudents - aboveTechPoints;
 	var belowAverageHsePoints = allStudents - aboveHsePoints;
 
-	document.getElementById("tech-skills-std-number").innerHTML = "TECH " + aboveTechPoints + " " + ((aboveTechPoints/allStudents)*100).toFixed(2) + "%";
-	document.getElementById("hse-skills-std-number").innerHTML = "HSE  "  + aboveHsePoints+ " " + ((aboveHsePoints/allStudents)*100).toFixed(2) + "%";
+	document.getElementById("tech-skills-std-number").innerHTML = "Atingiram a meta: " + aboveTechPoints + " - " + ((aboveTechPoints/allStudents)*100).toFixed(2) + "%";
+	document.getElementById("hse-skills-std-number").innerHTML = "Atingiram a meta: "  + aboveHsePoints+ " - " + ((aboveHsePoints/allStudents)*100).toFixed(2) + "%";
 
 	techSkillsChart(aboveTechPoints, belowAverageTechPoints);
 	hseSkillsChart(aboveHsePoints, belowAverageHsePoints);
@@ -323,6 +324,30 @@ function jedisRating(){
   var averagePercent = (average/5) * 100;
   document.getElementById("jedi-average").innerHTML = "A pontuação média é: " + average.toFixed(2);
 }
+
+function studentsSatisfaction(){
+	var head = dropHeadMenu.value;
+  var generation = dropGenerationMenu.value;
+	var quantitySprints = data[head][generation]["ratings"].length;
+	var allStudents = data[head][generation]["students"].length;
+	var highSatisf = 0;
+	var normalSatisf = 0;
+	var lowSatisf = 0;
+
+	for ( var i = 0; i < quantitySprints; i++) {
+		lowSatisf = data[head][generation]["ratings"][i]["student"]["no-cumple"];
+		normalSatisf = data[head][generation]["ratings"][i]["student"]["cumple"];
+		highSatisf = data[head][generation]["ratings"][i]["student"]["supera"];
+		
+		var satisfied = (normalSatisf + highSatisf);
+		var notSatisfied = lowSatisf;
+		//console.log(satisfied);
+		//console.log(notSatisfied);
+		document.getElementById("satisf-sp"+(i+1)).innerHTML = "Sprint " + (i+1) + ":" + satisfied + "%";
+	}	
+}
+
+
 //chamada da função ao clicar na aba estudantes.
 var tabStudents = document.getElementById("tabStudents");
 tabStudents.addEventListener("click", loadDevs);
@@ -360,5 +385,4 @@ function loadDevs(){
       }
     }
   }
-
 }
