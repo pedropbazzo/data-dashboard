@@ -163,15 +163,11 @@ function netPromoScore(){
 	for(var i = 0; i < ratingsLength; i++){
 		var promoters = data[head][generation]['ratings'][i]['nps']['promoters'];
 		var detractors = data[head][generation]['ratings'][i]['nps']['detractors'];
-<<<<<<< HEAD
 		var nps = promoters - detractors;
 		sumNPS += nps;
 
 		document.getElementById("nps-sp" + (i + 1)).innerHTML = "NPS: " + nps; 
-=======
-		//console.log(promoters)
 
->>>>>>> 3c5319968e99f4f2498bc0c4b32de6600bd9035d
 	}
 	var averageNPS = (sumNPS / ratingsLength);
 	document.getElementById("average-nps").innerHTML = "média NPS: " + averageNPS; 
@@ -186,9 +182,9 @@ function mentorRating(){
     sum = sum + mentorScore;
     document.getElementById("score-mentor-sp" + (parseInt(i)+1)).innerHTML = "Sprint " + (parseInt(i)+1) + ": " + mentorScore;
   }
-  average = sum / (parseInt(i) + 1);
-  averagePoints = average * 100;
-  var scoreAverage = document.getElementById("score-average").innerHTML = "A pontuação média é: " + averagePoints;
+  var average = sum / (parseInt(i) + 1);
+  var averagePercent = (average/5) * 100;
+  document.getElementById("score-average").innerHTML = "A pontuação média é: " + average.toFixed(2);
 }
 
 function loadDevs(){
