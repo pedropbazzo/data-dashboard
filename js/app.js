@@ -209,21 +209,17 @@ function loadDevs(){
     head = data[head];
     for (var generation in head){
       generation = data[head][generation];
+      var devsList = document.getElementById("developers");
+      devList.innerHTML = "";
+      for(var i in data[head][generation]['students']){
+        var people = document.createElement('div');
+        people.classList.add('people');
+        var img = document.createElement('img');
+        img.classList.add('photo');
+        img.src = data[head][generation]['students'][i]['photo'];
+        devList.appendChild(people);
+        people.appendChild(img);
+      }
     }
   }
-}
-// var devsList = document.getElementById("developers");
-// devList.innerHTML = "";
-// for(generation in data[head]){
-//   for(var i in data[head][generation]['students']){
-//     var people = document.createElement('div');
-//     people.classList.add('people');
-//     var img = document.createElement('img');
-//     img.classList.add('photo');
-//     img.src = data[head][generation]['students'][i]['photo'];
-//     devList.appendChild(people);
-//     people.appendChild(img);
-//   }
-// }
-
 }
