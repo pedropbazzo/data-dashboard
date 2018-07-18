@@ -18,7 +18,10 @@ function closeNav() {
 }
 
 // Load the Visualization API and the corechart package.
- google.charts.load('current', {'packages':['corechart']});
+google.charts.load('current', {'packages':['corechart']});
+//google.charts.setOnLoadCallback(drawChart);
+//drawChart(activeStudents, quittingStudents);
+
 
 //Menu dinamico de sedes e geracoes
 var dropHeadMenu = document.getElementById("select-heads");
@@ -69,6 +72,22 @@ function loadData() {
   mentorRating();
 }
 
+function drawChart(activeStudents, quittingStudents) {
+	// var chart = new google.visualization.DataTable(document.getElementById("drawChart"));
+	var data = google.visualization.arrayToDataTable([
+		['Status','Total'],
+		['Ativas', activeStudents],
+		['Inativas', quittingStudents]
+	]);
+
+	var options = {
+          title: 'Grafico 1'
+        };
+       var chart = new google.visualization.PieChart(document.getElementById('drawChart'));
+
+        chart.draw(data, options);
+}
+
 function enrollmentStudents() {
   var headSelected = dropHeadMenu.value;
   var generationSelected = dropGenerationMenu.value;
@@ -84,10 +103,19 @@ function enrollmentStudents() {
   }
   var rateQuitStudent = (quittingStudents/allStudents)*100;
   document.getElementById("quitting-students").innerHTML = "Alunas desistentes: " + rateQuitStudent.toFixed(2) + "%";
+  var activeStudents = allStudents - quittingStudents;
 
-  //google.charts.setOnLoadCallback(drawChart);
+
+	drawChart(activeStudents, quittingStudents);
+
+  //grafico para alunas ativas e alunas desistentes
+
+
 
 }
+
+       google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
 function achievements() {
 
@@ -106,9 +134,10 @@ function achievements() {
 
 		for( i in data[head][generation]["students"] ){
 			//acessa o array de sprints de cada aluna
-			//if (data[head][generation]['students'][i].length != "undefined"){
+			if (data[head][generation]['students'][i]["sprints"] != undefined){
+				console.log("BABBABBAB")
 				if (data[head][generation]["students"][i]["sprints"].length != 0){
-					console.log("tamanho array" + data[head][generation]["students"][i]["sprints"].length);
+					//console.log("tamanho array" + data[head][generation]["students"][i]["sprints"].length);
 					if( data[head][generation]["students"][i]["sprints"][j]["score"]["tech"] >= techAveragePoints){
 						sumTechPoints +=1;
 					}
@@ -116,7 +145,7 @@ function achievements() {
 						sumHsePoints += 1;
 					}
 				}
-			//}
+			}
 		}
 		document.getElementById("tech-skill-sp" + (j+1)).innerHTML = "Sprint " + (j + 1) + ": " + sumTechPoints + " " + ((sumTechPoints/allStudents)*100).toFixed(2) + "%";
 		document.getElementById("hse-skill-sp" + (j+1)).innerHTML = "Sprint " + (j + 1) + ": " + sumHsePoints+ " " + ((sumHsePoints/allStudents)*100).toFixed(2) + "%";
@@ -175,41 +204,6 @@ function loadDevs(){
 }
 
 
-
-/*
-// Load the Visualization API and the corechart package.
-      google.charts.load('current', {'packages':['corechart']});
-
-      // Set a callback to run when the Google Visualization API is loaded.
-      google.charts.setOnLoadCallback(drawChart);
-
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
-      function drawChart() {
-        var
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Mushrooms', 3],
-          ['Onions', 1],
-          ['Olives', 1],
-          ['Zucchini', 1],
-          ['Pepperoni', 2]
-        ]);
-
-        // Set chart options
-        var options = {'title':'How Much Pizza I Ate Last Night',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-*/
 
 /*function achievements() {
 
