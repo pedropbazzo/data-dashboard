@@ -194,8 +194,7 @@ function achievements() {
 		}
 		averageTechStud += sumTechPoints;
 		averageHseStud += sumHsePoints;
-		//console.log("tech: "+averageTechStud);
-		//console.log("HSE"+ averageHseStud);
+
 		document.getElementById("tech-skill-sp" + (j + 1)).innerHTML = "Sprint " + (j + 1) + ": " + sumTechPoints + " " + ((sumTechPoints/allStudents)*100).toFixed(2) + "%";
 		document.getElementById("hse-skill-sp" + (j + 1)).innerHTML = "Sprint " + (j + 1) + ": " + sumHsePoints+ " " + ((sumHsePoints/allStudents)*100).toFixed(2) + "%";
 
@@ -232,8 +231,8 @@ function studentsPoints() {
 	var quantitySprints = data[head][generation]["ratings"].length;
 	var techAveragePoints = 0.7*techMaxPoints;
 	var hseAveragePoints = 0.7*hseMaxPoints;
-	var sumTechPoints = 0;
-	var sumHsePoints = 0;
+	var aboveTechPoints = 0;
+	var aboveHsePoints = 0;
 	var averageTechStud = 0;
 	var averageHseStud = 0;
 
@@ -242,21 +241,24 @@ function studentsPoints() {
 		if (data[head][generation]['students'][i]["sprints"] != undefined){
 			if (data[head][generation]["students"][i]["sprints"].length != 0){
 					if( data[head][generation]["students"][i]["sprints"][sprint]["score"]["tech"] >= techAveragePoints){
-						sumTechPoints += 1;
+						aboveTechPoints += 1;
 					}
 					if(data[head][generation]["students"][i]["sprints"][sprint]["score"]["hse"] >= hseAveragePoints){
-						sumHsePoints += 1;
+						aboveHsePoints += 1;
 					}
 				}
 			}
 	}
 
-	averageTechStud += sumTechPoints;
-	averageHseStud += sumHsePoints;
-	console.log("tech: "+averageTechStud);
-	console.log("HSE"+ averageHseStud);
-	document.getElementById("tech-skills-std-number").innerHTML = "TECH " + sumTechPoints + " " + ((sumTechPoints/allStudents)*100).toFixed(2) + "%";
-	document.getElementById("hse-skills-std-number").innerHTML = "HSE  "  + sumHsePoints+ " " + ((sumHsePoints/allStudents)*100).toFixed(2) + "%";
+	var belowAverageTechPoints = allStudents - aboveTechPoints;
+	var belowAverageHsePoints = allStudents - aboveHsePoints;
+	console.log("tech above: "+aboveTechPoints);
+		console.log("tech below"+ belowAverageTechPoints);
+	console.log("HSE above"+ aboveHsePoints);
+		console.log("tech below"+ belowAverageHsePoints);
+
+	document.getElementById("tech-skills-std-number").innerHTML = "TECH " + aboveTechPoints + " " + ((aboveTechPoints/allStudents)*100).toFixed(2) + "%";
+	document.getElementById("hse-skills-std-number").innerHTML = "HSE  "  + aboveHsePoints+ " " + ((aboveHsePoints/allStudents)*100).toFixed(2) + "%";
 
 	//drawBasic(dataArray);
 
