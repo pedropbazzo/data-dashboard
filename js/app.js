@@ -272,8 +272,8 @@ function studentsPoints() {
 	var belowAverageTechPoints = allStudents - aboveTechPoints;
 	var belowAverageHsePoints = allStudents - aboveHsePoints;
 
-	document.getElementById("tech-skills-std-number").innerHTML = "TECH " + aboveTechPoints + " " + ((aboveTechPoints/allStudents)*100).toFixed(2) + "%";
-	document.getElementById("hse-skills-std-number").innerHTML = "HSE  "  + aboveHsePoints+ " " + ((aboveHsePoints/allStudents)*100).toFixed(2) + "%";
+	document.getElementById("tech-skills-std-number").innerHTML = "Atingiram a meta: " + aboveTechPoints + " - " + ((aboveTechPoints/allStudents)*100).toFixed(2) + "%";
+	document.getElementById("hse-skills-std-number").innerHTML = "Atingiram a meta: "  + aboveHsePoints+ " - " + ((aboveHsePoints/allStudents)*100).toFixed(2) + "%";
 
 	techSkillsChart(aboveTechPoints, belowAverageTechPoints);
 	hseSkillsChart(aboveHsePoints, belowAverageHsePoints);
