@@ -70,6 +70,7 @@ function loadData() {
   achievements();
   netPromoScore();
   mentorRating();
+  jedisRating();
 }
 
 function drawChart(activeStudents, quittingStudents) {
@@ -166,25 +167,39 @@ function netPromoScore(){
 		var nps = promoters - detractors;
 		sumNPS += nps;
 
-		document.getElementById("nps-sp" + (i + 1)).innerHTML = "NPS: " + nps; 
+		document.getElementById("nps-sp" + (i + 1)).innerHTML = "NPS: " + nps;
 
 	}
 	var averageNPS = (sumNPS / ratingsLength);
-	document.getElementById("average-nps").innerHTML = "média NPS: " + averageNPS; 
+	document.getElementById("average-nps").innerHTML = "média NPS: " + averageNPS;
 }
 
 function mentorRating(){
-  var headOffice = dropHeadMenu.value;
-  var gen = dropGenerationMenu.value;
+  var head = dropHeadMenu.value;
+  var generation = dropGenerationMenu.value;
   var sum = 0;
-  for( i in data[headOffice][gen]['ratings']){
-    var mentorScore = parseFloat(data[headOffice][gen]['ratings'][i]["teacher"]);
+  for(var i in data[head][generation]['ratings']){
+    var mentorScore = parseFloat(data[head][generation]['ratings'][i]["teacher"]);
     sum = sum + mentorScore;
     document.getElementById("score-mentor-sp" + (parseInt(i)+1)).innerHTML = "Sprint " + (parseInt(i)+1) + ": " + mentorScore;
   }
   var average = sum / (parseInt(i) + 1);
   var averagePercent = (average/5) * 100;
   document.getElementById("score-average").innerHTML = "A pontuação média é: " + average.toFixed(2);
+}
+
+function jedisRating(){
+  var head = dropHeadMenu.value;
+  var generation = dropGenerationMenu.value;
+  var sum = 0;
+  for(var i in data[head][generation]['ratings']){
+    var jediScore = parseFloat(data[head][generation]['ratings'][i]['jedi']);
+    sum = sum + jediScore;
+    document.getElementById("score-jedi-sp" + (parseInt(i)+1)).innerHTML = "Sprint " + (parseInt(i)+1) + ": " + jediScore;
+  }
+  var average = sum / (parseInt(i) + 1);
+  var averagePercent = (average/5) * 100;
+  document.getElementById("jedi-average").innerHTML = "A pontuação média é: " + average.toFixed(2);
 }
 
 function loadDevs(){
@@ -205,5 +220,3 @@ function loadDevs(){
   }
 
 }
-
-
