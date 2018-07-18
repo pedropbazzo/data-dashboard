@@ -353,24 +353,5 @@ function loadDevs(){
     }
   }
 
-	/*for(var head in data){
-    for (var generation in data[head]){
-      var devsList = document.getElementById("developers");
-      devsList.innerHTML = "";
-      for(var i in data[head][generation]['students']){
-        var people = document.createElement('div');
-        people.classList.add('people');
-        var img = document.createElement('img');
-        img.classList.add('photo');
-        img.src = data[head][generation]['students'][i]['photo'];
-        if(data[head][generation]['students'][i]['photo'] == undefined ||data[head][generation]['students'][i]['photo'] == "" ){
-        	img.src = 'assets/images/sem-photo.jpg';
-        }
-        //people.innerHTML = img;
-        people.appendChild(img);
-        devsList.appendChild(people);
-      }
-    }
-  }*/
 }
 
