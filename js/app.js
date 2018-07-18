@@ -264,6 +264,9 @@ function loadDevs(){
           var img = document.createElement('img');
           img.classList.add('photo');
           img.src = data[head][generation]['students'][i]['photo'];
+          if(data[head][generation]['students'][i]['photo'] == undefined ||data[head][generation]['students'][i]['photo'] == "" ){
+            img.src = 'assets/images/sem-photo.jpg';
+          }
           people.innerHTML = img;
           people.appendChild(img);
           devsList.appendChild(people);
