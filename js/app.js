@@ -113,11 +113,10 @@ function enrollmentStudents() {
 
 }
 
-       google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
 
 function achievements() {
-
   var head = dropHeadMenu.value;
   var generation = dropGenerationMenu.value;
   var allStudents = data[head][generation]["students"].length;
@@ -126,6 +125,8 @@ function achievements() {
 	var hseAveragePoints = 0.7*hseMaxPoints;
 	var sumTechPoints = 0;
 	var sumHsePoints = 0;
+	var averageTechStud = 0;
+	var averageHseStud = 0;
 
 	for(var j = 0; j < quantitySprints; j++){
 		sumTechPoints = 0;
@@ -134,11 +135,9 @@ function achievements() {
 		for( i in data[head][generation]["students"] ){
 			//acessa o array de sprints de cada aluna
 			if (data[head][generation]['students'][i]["sprints"] != undefined){
-				console.log("BABBABBAB")
 				if (data[head][generation]["students"][i]["sprints"].length != 0){
-					//console.log("tamanho array" + data[head][generation]["students"][i]["sprints"].length);
 					if( data[head][generation]["students"][i]["sprints"][j]["score"]["tech"] >= techAveragePoints){
-						sumTechPoints +=1;
+						sumTechPoints += 1;
 					}
 					if(data[head][generation]["students"][i]["sprints"][j]["score"]["hse"] >= hseAveragePoints){
 						sumHsePoints += 1;
@@ -146,27 +145,30 @@ function achievements() {
 				}
 			}
 		}
-		document.getElementById("tech-skill-sp" + (j+1)).innerHTML = "Sprint " + (j + 1) + ": " + sumTechPoints + " " + ((sumTechPoints/allStudents)*100).toFixed(2) + "%";
-		document.getElementById("hse-skill-sp" + (j+1)).innerHTML = "Sprint " + (j + 1) + ": " + sumHsePoints+ " " + ((sumHsePoints/allStudents)*100).toFixed(2) + "%";
-		//console.log(sumHsePoints);
-
+		averageTechStud += sumTechPoints;
+		averageHseStud += sumHsePoints;
+		document.getElementById("tech-skill-sp" + (j + 1)).innerHTML = "Sprint " + (j + 1) + ": " + sumTechPoints + " " + ((sumTechPoints/allStudents)*100).toFixed(2) + "%";
+		document.getElementById("hse-skill-sp" + (j + 1)).innerHTML = "Sprint " + (j + 1) + ": " + sumHsePoints+ " " + ((sumHsePoints/allStudents)*100).toFixed(2) + "%";
 	}
+	document.getElementById("average-tech-stud").innerHTML = "Média Tech" + (averageTechStud/4);
+	document.getElementById("average-hse-stud").innerHTML = "Média HSE" + (averageHseStud/4);
 }
 
 function netPromoScore(){
 	var head = dropHeadMenu.value;
   var generation = dropGenerationMenu.value;
 	var ratingsLength = data[head][generation]['ratings'].length;
-
+	var sumNPS = 0;
 	for(var i = 0; i < ratingsLength; i++){
-		//console.log("SPRINT " + (i+1));
-
-		//var nps = data[head][generation]['ratings'][i];
 		var promoters = data[head][generation]['ratings'][i]['nps']['promoters'];
 		var detractors = data[head][generation]['ratings'][i]['nps']['detractors'];
-		//console.log(promoters)
-		
+		var nps = promoters - detractors;
+		sumNPS += nps;
+
+		document.getElementById("nps-sp" + (i + 1)).innerHTML = "NPS: " + nps; 
 	}
+	var averageNPS = (sumNPS / ratingsLength);
+	document.getElementById("average-nps").innerHTML = "média NPS: " + averageNPS; 
 }
 
 
