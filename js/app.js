@@ -10,11 +10,12 @@ var openSideNav = document.getElementById("openNav");
 openSideNav.addEventListener("click", openNav);
 function openNav() {
   document.getElementById("sideNav").style.width = "250px";
+  document.getElementById("sideNav").style.display = "block";
 }
 var closeSideNav = document.getElementById("closeNav");
 closeSideNav.addEventListener("click", closeNav);
 function closeNav() {
-  document.getElementById("sideNav").style.width = "0";
+  document.getElementById("sideNav").style.display = "none";
 }
 
 // Load the Visualization API and the corechart package.

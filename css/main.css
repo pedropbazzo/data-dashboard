@@ -105,24 +105,35 @@ i{
   background-color: #ffe521;
   border: 1px solid #ffe521;
 }
-#heads, #generation {
+#heads, #generation, #sprint-skills {
   display: inline-block;
-  min-width: 420px;
+  min-width: 280px;
 }
 
-#heads:after, #generation:after {
+#heads:after, #generation:after, #sprint-skills:after {
   content: '\25BE';
   font: normal normal normal 30px/1 FontAwesome;
   color: #000;
-  right: 152px;
+  left: 255px;
   top: 0px;
-  height: 35px;
-  padding: 5px 8px 0px 5px;
+  height: 36px;
+  padding: 6px 8px 0px 5px;
   border-left: 2px solid #ffe521;
   background-color: #ffe521;
   position: absolute;
   pointer-events: none;
-  border-radius: 0 6px 6px 6px;
+  border-radius: 0 6px 6px 0;
+}
+#sprint-skills {
+  position: absolute;
+  top:5px;
+  right: 0;
+}
+#sprint-skills:after{
+  top: 0;
+  left: 240px;
+  height: 34px;
+  padding: 4px 8px 0px 5px;
 }
 
 select::-ms-expand {
@@ -136,8 +147,8 @@ select {
 
   display: block;
   width: 100%;
-  max-width: 320px;
-  height: 35px;
+  max-width: 280px;
+  height: 36px;
   float: right;
   margin-bottom: 30px;
   padding: 0px 10px;
