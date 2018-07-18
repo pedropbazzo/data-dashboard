@@ -341,15 +341,21 @@ function loadDevs(){
           people.classList.add('people');
           var img = document.createElement('img');
           img.classList.add('photo');
-          var name = document.createElement('p');
-          name.innerHTML = data[head][generation]['students'][i]['name'];
           img.src = data[head][generation]['students'][i]['photo'];
           if(data[head][generation]['students'][i]['photo'] == undefined ||data[head][generation]['students'][i]['photo'] == "" ){
             img.src = 'assets/images/sem-photo.jpg';
           }
-          //people.innerHTML = img;
+          var devInfo = document.createElement('div');
+          devInfo.classList.add('dev-info');
+          var name = document.createElement('h4');
+          name.innerHTML = data[head][generation]['students'][i]['name'];
+          var position = document.createElement('h5');
+          position.innerHTML = "Frontend Developer";
+          devInfo.appendChild(name);
           people.appendChild(img);
-          people.appendChild(name);
+          people.appendChild(devInfo);
+          devInfo.appendChild(name);
+          devInfo.appendChild(position);
           devsList.appendChild(people);
         }
       }
@@ -357,4 +363,3 @@ function loadDevs(){
   }
 
 }
-
