@@ -192,39 +192,3 @@ function loadDevs(){
 }
 
 
-
-/*function achievements() {
-
-  var head = dropHeadMenu.value;
-  var generation = dropGenerationMenu.value;
-  var allStudents = data[head][generation]["students"].length;
-	var quantitySprints = data[head][generation]["ratings"].length;
-	var techAveragePoints = 0.7*techMaxPoints;
-	var hseAveragePoints = 0.7*hseMaxPoints;
-	var sumTechPoints = 0;
-	var sumHsePoints = 0;
-
-	for(var j = 0; j < quantitySprints; j++){
-		sumTechPoints = 0;
-		sumHsePoints = 0;
-
-		for( i in data[head][generation]["students"] ){
-			//acessa o array de sprints de cada aluna
-			if (data[head][generation]['students'][i].length != undefined){
-				if (data[head][generation]["students"][i]["sprints"].length != 0){
-					console.log("tamanho array" + data[head][generation]["students"][i]["sprints"].length);
-					if( data[head][generation]["students"][i]["sprints"][j]["score"]["tech"] >= techAveragePoints){
-						sumTechPoints +=1;
-					}
-					if(data[head][generation]["students"][i]["sprints"][j]["score"]["hse"] >= hseAveragePoints){
-						sumHsePoints += 1;
-					}
-				}
-			}
-		}
-		document.getElementById("tech-skill-sp" + (j+1)).innerHTML = "Sprint " + (j + 1) + ": " + sumTechPoints + " " + ((sumTechPoints/allStudents)*100).toFixed(2) + "%";
-		document.getElementById("hse-skill-sp" + (j+1)).innerHTML = "Sprint " + (j + 1) + ": " + sumHsePoints+ " " + ((sumHsePoints/allStudents)*100).toFixed(2) + "%";
-		//console.log(sumHsePoints);
-
-	}
-}*/
