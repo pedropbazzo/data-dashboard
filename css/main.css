@@ -252,7 +252,9 @@ select {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-
+#developers{
+  margin-bottom: 60px;
+}
 .people{
   display: flex;
   justify-content: space-around;
@@ -260,6 +262,7 @@ select {
   width: 100%;
   padding: 0px;
   height: 100%;
+  margin-bottom: 30px;
   border: 1px solid #DCDCDC;
   -webkit-box-shadow: 10px 11px 20px -4px rgba(0,0,0,0.43);
   -moz-box-shadow: 10px 11px 20px -4px rgba(0,0,0,0.43);
