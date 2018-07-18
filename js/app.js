@@ -201,24 +201,28 @@ function jedisRating(){
   var averagePercent = (average/5) * 100;
   document.getElementById("jedi-average").innerHTML = "A pontuação média é: " + average.toFixed(2);
 }
+//chamada da função ao clicar na aba estudantes.
+var tabStudents = document.getElementById("tabStudents");
+tabStudents.addEventListener("click", loadDevs);
 
+//função que monta os cards com as infos das estudantes.
 function loadDevs(){
   //fazer um laço para pegar o nome das estudantes de cada sede e turma no data.js
   var studentsInfo = [];
   for(var head in data){
-    head = data[head];
-    for (var generation in head){
-      generation = data[head][generation];
-      var devsList = document.getElementById("developers");
-      devList.innerHTML = "";
-      for(var i in data[head][generation]['students']){
-        var people = document.createElement('div');
-        people.classList.add('people');
-        var img = document.createElement('img');
-        img.classList.add('photo');
-        img.src = data[head][generation]['students'][i]['photo'];
-        devList.appendChild(people);
-        people.appendChild(img);
+    for (var generation in data[head]){
+      for (var students in data[head][generation]) {
+        for(var i in data[head][generation]['students']){
+          var devsList = document.getElementById("developers");
+          var people = document.createElement('div');
+          people.classList.add('people');
+          var img = document.createElement('img');
+          img.classList.add('photo');
+          img.src = data[head][generation]['students'][i]['photo'];
+          devsList.innerHTML = people;
+          people.innerHTML = img;
+          people.appendChild(devsList);
+        }
       }
     }
   }
