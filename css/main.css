@@ -358,7 +358,8 @@ footer{
   width: 100%;
   padding: 30px;
   position: relative;
-  border-bottom: 0;
+  bottom: : 0;
+  margin-top: 60px;
 }
 .brand-footer{
   text-align: left;
