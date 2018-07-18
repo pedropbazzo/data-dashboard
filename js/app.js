@@ -107,13 +107,13 @@ function drawChart(activeStudents, quittingStudents) {
     ['Inativas', quittingStudents]
   ]);
 
- /* var options = {
-    title: 'Grafico 1'
-  };*/
-  var chart = new google.visualization.PieChart(document.getElementById('drawChart'));
+  /* var options = {
+  title: 'Grafico 1'
+};*/
+var chart = new google.visualization.PieChart(document.getElementById('drawChart'));
 
-  //chart.draw(data, options);
-  chart.draw(data);
+//chart.draw(data, options);
+chart.draw(data);
 }
 
 function enrollmentStudents() {
@@ -133,7 +133,7 @@ function enrollmentStudents() {
   document.getElementById("quitting-students").innerHTML = "Alunas desistentes: " + rateQuitStudent.toFixed(2) + "%";
   var activeStudents = allStudents - quittingStudents;
 
-	drawChart(activeStudents, quittingStudents);
+  drawChart(activeStudents, quittingStudents);
 
 
 
@@ -146,18 +146,18 @@ function enrollmentStudents() {
 
 
 function drawBasic(array) {
-				var dataArray = [];
-				dataArray = array;
+  var dataArray = [];
+  dataArray = array;
 
-        var data = google.visualization.arrayToDataTable([
-        	[]
-        	]);
+  var data = google.visualization.arrayToDataTable([
+    []
+  ]);
 
-        //var googleChartData = google.visualization.arrayToDataTable($.parseJSON(chartData));
+  //var googleChartData = google.visualization.arrayToDataTable($.parseJSON(chartData));
 
 
-        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-        chart.draw(data, {width: 400, height: 240, title: 'Company Performance'});
+  var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+  chart.draw(data, {width: 400, height: 240, title: 'Company Performance'});
 }
 
 
@@ -167,77 +167,77 @@ function achievements() {
   var head = dropHeadMenu.value;
   var generation = dropGenerationMenu.value;
   var allStudents = data[head][generation]["students"].length;
-	var quantitySprints = data[head][generation]["ratings"].length;
-	var techAveragePoints = 0.7*techMaxPoints;
-	var hseAveragePoints = 0.7*hseMaxPoints;
-	var sumTechPoints = 0;
-	var sumHsePoints = 0;
-	var averageTechStud = 0;
-	var averageHseStud = 0;
-	var dataArray = [];
+  var quantitySprints = data[head][generation]["ratings"].length;
+  var techAveragePoints = 0.7*techMaxPoints;
+  var hseAveragePoints = 0.7*hseMaxPoints;
+  var sumTechPoints = 0;
+  var sumHsePoints = 0;
+  var averageTechStud = 0;
+  var averageHseStud = 0;
+  var dataArray = [];
 
-	for(var j = 0; j < quantitySprints; j++){
-		sumTechPoints = 0;
-		sumHsePoints = 0;
+  for(var j = 0; j < quantitySprints; j++){
+    sumTechPoints = 0;
+    sumHsePoints = 0;
 
-		for( i in data[head][generation]["students"] ){
-			//acessa o array de sprints de cada aluna
-			if (data[head][generation]['students'][i]["sprints"] != undefined){
-				if (data[head][generation]["students"][i]["sprints"].length != 0){
-					if( data[head][generation]["students"][i]["sprints"][j]["score"]["tech"] >= techAveragePoints){
-						sumTechPoints += 1;
-					}
-					if(data[head][generation]["students"][i]["sprints"][j]["score"]["hse"] >= hseAveragePoints){
-						sumHsePoints += 1;
-					}
-				}
-			}
-		}
-		averageTechStud += sumTechPoints;
-		averageHseStud += sumHsePoints;
-		//console.log("tech: "+averageTechStud);
-		//console.log("HSE"+ averageHseStud);
-		document.getElementById("tech-skill-sp" + (j + 1)).innerHTML = "Sprint " + (j + 1) + ": " + sumTechPoints + " " + ((sumTechPoints/allStudents)*100).toFixed(2) + "%";
-		document.getElementById("hse-skill-sp" + (j + 1)).innerHTML = "Sprint " + (j + 1) + ": " + sumHsePoints+ " " + ((sumHsePoints/allStudents)*100).toFixed(2) + "%";
+    for( i in data[head][generation]["students"] ){
+      //acessa o array de sprints de cada aluna
+      if (data[head][generation]['students'][i]["sprints"] != undefined){
+        if (data[head][generation]["students"][i]["sprints"].length != 0){
+          if( data[head][generation]["students"][i]["sprints"][j]["score"]["tech"] >= techAveragePoints){
+            sumTechPoints += 1;
+          }
+          if(data[head][generation]["students"][i]["sprints"][j]["score"]["hse"] >= hseAveragePoints){
+            sumHsePoints += 1;
+          }
+        }
+      }
+    }
+    averageTechStud += sumTechPoints;
+    averageHseStud += sumHsePoints;
+    //console.log("tech: "+averageTechStud);
+    //console.log("HSE"+ averageHseStud);
+    document.getElementById("tech-skill-sp" + (j + 1)).innerHTML = "Sprint " + (j + 1) + ": " + sumTechPoints + " " + ((sumTechPoints/allStudents)*100).toFixed(2) + "%";
+    document.getElementById("hse-skill-sp" + (j + 1)).innerHTML = "Sprint " + (j + 1) + ": " + sumHsePoints+ " " + ((sumHsePoints/allStudents)*100).toFixed(2) + "%";
 
-		//Cria o array para fazer o gráfico:
-		dataArray[0] = [];
-		dataArray[0][0] = "Sprint";
-		dataArray[0][1] = "Alunas";
+    //Cria o array para fazer o gráfico:
+    dataArray[0] = [];
+    dataArray[0][0] = "Sprint";
+    dataArray[0][1] = "Alunas";
 
-		dataArray[j+1] = [];
-		for (i = 0; i < dataArray[0].length; i++) {
-			if(i == 0) {
-				dataArray[j+1][i] = "Sprint" + (j+1);
-			}else {
-				dataArray[j+1][i] = sumTechPoints;
-			}
-		}
+    dataArray[j+1] = [];
+    for (i = 0; i < dataArray[0].length; i++) {
+      if(i == 0) {
+        dataArray[j+1][i] = "Sprint" + (j+1);
+      }else {
+        dataArray[j+1][i] = sumTechPoints;
+      }
+    }
 
 
-	}
-	console.log(dataArray);
-	averageTechStud = (averageTechStud/quantitySprints).toFixed(2);
-	averageHseStud = (averageHseStud/quantitySprints).toFixed(2);
-	document.getElementById("average-tech-stud").innerHTML = "Média No. Estud Tech: " + (averageTechStud) + " " +((averageTechStud/allStudents)*100).toFixed(2) + "%";
-	document.getElementById("average-hse-stud").innerHTML = "Média No. Estud HSE: " + (averageHseStud) + " " + ((averageHseStud/allStudents)*100).toFixed(2) + "%";
-	drawBasic(dataArray);
+  }
+  console.log(dataArray);
+  averageTechStud = (averageTechStud/quantitySprints).toFixed(2);
+  averageHseStud = (averageHseStud/quantitySprints).toFixed(2);
+  document.getElementById("average-tech-stud").innerHTML = "Média No. Estud Tech: " + (averageTechStud) + " " +((averageTechStud/allStudents)*100).toFixed(2) + "%";
+  document.getElementById("average-hse-stud").innerHTML = "Média No. Estud HSE: " + (averageHseStud) + " " + ((averageHseStud/allStudents)*100).toFixed(2) + "%";
+  drawBasic(dataArray);
 }
 
 function netPromoScore(){
   var head = dropHeadMenu.value;
   var generation = dropGenerationMenu.value;
-	var ratingsLength = data[head][generation]['ratings'].length;
-	var sumNPS = 0;
-	for(var i = 0; i < ratingsLength; i++){
-		var promoters = data[head][generation]['ratings'][i]['nps']['promoters'];
-		var detractors = data[head][generation]['ratings'][i]['nps']['detractors'];
-		var nps = promoters - detractors;
-		sumNPS += nps;
-		document.getElementById("nps-sp" + (i + 1)).innerHTML = "NPS sprint "+ (i + 1) + " : " + nps.toFixed(2);
-	}
-	var averageNPS = (sumNPS / ratingsLength);
-	document.getElementById("average-nps").innerHTML = "média NPS: " + averageNPS;
+  var ratingsLength = data[head][generation]['ratings'].length;
+  var sumNPS = 0;
+  for(var i = 0; i < ratingsLength; i++){
+    var promoters = data[head][generation]['ratings'][i]['nps']['promoters'];
+    var detractors = data[head][generation]['ratings'][i]['nps']['detractors'];
+    var nps = promoters - detractors;
+    sumNPS += nps;
+    document.getElementById("nps-sp" + (i + 1)).innerHTML = "NPS sprint "+ (i + 1) + " : " + nps.toFixed(2);
+  }
+  var averageNPS = (sumNPS / ratingsLength);
+  document.getElementById("average-nps").innerHTML = "média NPS: " + averageNPS;
 
 }
 
@@ -274,8 +274,8 @@ tabStudents.addEventListener("click", loadDevs);
 
 //função que monta os cards com as infos das estudantes.
 function loadDevs(){
-  //fazer um laço para pegar o nome das estudantes de cada sede e turma no data.js
-  var studentsInfo = [];
+  // //fazer um laço para pegar o nome das estudantes de cada sede e turma no data.js
+  // var studentsInfo = [];
   for(var head in data){
     for (var generation in data[head]){
       for (var students in data[head][generation]) {
@@ -290,10 +290,18 @@ function loadDevs(){
           if(data[head][generation]['students'][i]['photo'] == undefined ||data[head][generation]['students'][i]['photo'] == "" ){
             img.src = 'assets/images/sem-photo.jpg';
           }
-          people.innerHTML = img;
           people.appendChild(img);
+          var devsInfo = document.createElement('div');
+          devsInfo.classList.add('dev-info');
+          var devName = document.createElement('h4');
+          devName.innerHTML = data[head][generation]['students'][i]['name'];
+          var devPosition = document.createElement('h5');
+          devName.innerHTML = "Frontend Developer";
+          devsInfo.innerHTML = devName + devPosition;
+          people.appendChild(devsInfo);
           devsList.appendChild(people);
         }
+
       }
     }
   }
