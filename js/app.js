@@ -36,7 +36,7 @@ var dropGenerationMenu = document.getElementById("select-generation");
 dropGenerationMenu.addEventListener ("change", loadData);
 
 var dropSprintMenu = document.getElementById("select-sprint-skills");
-//dropSprintMenu.addEventListener("change", );
+dropSprintMenu.addEventListener("change", studentsPoints);
 
 
 window.onload = loadHeadMenu();
@@ -84,7 +84,7 @@ function loadSprintMenu() {
 
   for(var i = 0; i < totalSprints; i++){
     var sprintItem = document.createElement("option");
-    sprintItem.innerHTML = "Sprint " + i;
+    sprintItem.innerHTML = "Sprint " + (i+1);
     sprintItem.value = i;
     dropSprintMenu.appendChild(sprintItem);
   }
@@ -116,6 +116,35 @@ var chart = new google.visualization.PieChart(document.getElementById('drawChart
 chart.draw(data);
 }
 
+function techSkillsChart(aboveTechPoints, belowAverageTechPoints) {
+  var data = google.visualization.arrayToDataTable([
+    ['Status','Total'],
+    ['Atingiram a meta', aboveTechPoints],
+    ['Nao atingiram', belowAverageTechPoints]
+  ]);
+
+ /* var options = {
+    title: 'Grafico 1'
+  };*/
+  var chart = new google.visualization.PieChart(document.getElementById('techSkillsChart'));
+  chart.draw(data);
+}
+
+function hseSkillsChart(aboveHsePoints, belowAverageHsePoints) {
+  var data = google.visualization.arrayToDataTable([
+    ['Status','Total'],
+    ['Atingiram a meta', aboveHsePoints],
+    ['Nao atingiram', belowAverageHsePoints]
+  ]);
+
+ /* var options = {
+    title: 'Grafico 1'
+  };*/
+  var chart = new google.visualization.PieChart(document.getElementById('hseSkillsChart'));
+  chart.draw(data);
+}
+
+
 function enrollmentStudents() {
   var headSelected = dropHeadMenu.value;
   var generationSelected = dropGenerationMenu.value;
@@ -135,16 +164,11 @@ function enrollmentStudents() {
 
   drawChart(activeStudents, quittingStudents);
 
-
-
-
-
-
-
   //grafico para alunas ativas e alunas desistentes
 }
 
 
+<<<<<<< HEAD
 function drawBasic(array) {
   var dataArray = [];
   dataArray = array;
@@ -159,6 +183,22 @@ function drawBasic(array) {
   var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
   chart.draw(data, {width: 400, height: 240, title: 'Company Performance'});
 }
+=======
+// function drawBasic(array) {
+// 				var dataArray = [];
+// 				dataArray = array;
+
+//         var data = google.visualization.arrayToDataTable([
+//         	[]
+//         	]);
+
+//         //var googleChartData = google.visualization.arrayToDataTable($.parseJSON(chartData));
+
+
+//         var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+//         chart.draw(data, {width: 400, height: 240, title: 'Company Performance'});
+// }
+>>>>>>> 1a42823e262f33bec5a85451cc3dee5fad0882d5
 
 
 
@@ -167,6 +207,7 @@ function achievements() {
   var head = dropHeadMenu.value;
   var generation = dropGenerationMenu.value;
   var allStudents = data[head][generation]["students"].length;
+<<<<<<< HEAD
   var quantitySprints = data[head][generation]["ratings"].length;
   var techAveragePoints = 0.7*techMaxPoints;
   var hseAveragePoints = 0.7*hseMaxPoints;
@@ -222,6 +263,105 @@ function achievements() {
   document.getElementById("average-tech-stud").innerHTML = "Média No. Estud Tech: " + (averageTechStud) + " " +((averageTechStud/allStudents)*100).toFixed(2) + "%";
   document.getElementById("average-hse-stud").innerHTML = "Média No. Estud HSE: " + (averageHseStud) + " " + ((averageHseStud/allStudents)*100).toFixed(2) + "%";
   drawBasic(dataArray);
+=======
+	var quantitySprints = data[head][generation]["ratings"].length;
+	var techAveragePoints = 0.7*techMaxPoints;
+	var hseAveragePoints = 0.7*hseMaxPoints;
+	var sumTechPoints = 0;
+	var sumHsePoints = 0;
+	var averageTechStud = 0;
+	var averageHseStud = 0;
+	var dataArray = [];
+
+	for(var j = 0; j < quantitySprints; j++){
+		sumTechPoints = 0;
+		sumHsePoints = 0;
+
+		for( i in data[head][generation]["students"] ){
+			//acessa o array de sprints de cada aluna
+			if (data[head][generation]['students'][i]["sprints"] != undefined){
+				if (data[head][generation]["students"][i]["sprints"].length != 0){
+					if( data[head][generation]["students"][i]["sprints"][j]["score"]["tech"] >= techAveragePoints){
+						sumTechPoints += 1;
+					}
+					if(data[head][generation]["students"][i]["sprints"][j]["score"]["hse"] >= hseAveragePoints){
+						sumHsePoints += 1;
+					}
+				}
+			}
+		}
+		averageTechStud += sumTechPoints;
+		averageHseStud += sumHsePoints;
+
+		document.getElementById("tech-skill-sp" + (j + 1)).innerHTML = "Sprint " + (j + 1) + ": " + sumTechPoints + " " + ((sumTechPoints/allStudents)*100).toFixed(2) + "%";
+		document.getElementById("hse-skill-sp" + (j + 1)).innerHTML = "Sprint " + (j + 1) + ": " + sumHsePoints+ " " + ((sumHsePoints/allStudents)*100).toFixed(2) + "%";
+
+		//Cria o array para fazer o gráfico:
+		dataArray[0] = [];
+		dataArray[0][0] = "Sprint";
+		dataArray[0][1] = "Alunas";
+
+		dataArray[j+1] = [];
+		for (i = 0; i < dataArray[0].length; i++) {
+			if(i == 0) {
+				dataArray[j+1][i] = "Sprint" + (j+1);
+			}else {
+				dataArray[j+1][i] = sumTechPoints;
+			}
+		}
+
+
+	}
+	//console.log(dataArray);
+	averageTechStud = (averageTechStud/quantitySprints).toFixed(2);
+	averageHseStud = (averageHseStud/quantitySprints).toFixed(2);
+	document.getElementById("average-tech-stud").innerHTML = "Média No. Estud Tech: " + (averageTechStud) + " " +((averageTechStud/allStudents)*100).toFixed(2) + "%";
+	document.getElementById("average-hse-stud").innerHTML = "Média No. Estud HSE: " + (averageHseStud) + " " + ((averageHseStud/allStudents)*100).toFixed(2) + "%";
+	//drawBasic(dataArray);
+}
+
+function studentsPoints() {
+	var head = dropHeadMenu.value;
+  var generation = dropGenerationMenu.value;
+  var sprint = dropSprintMenu.value;
+  console.log(sprint);
+  var allStudents = data[head][generation]["students"].length;
+	var quantitySprints = data[head][generation]["ratings"].length;
+	var techAveragePoints = 0.7*techMaxPoints;
+	var hseAveragePoints = 0.7*hseMaxPoints;
+	var aboveTechPoints = 0;
+	var aboveHsePoints = 0;
+	var averageTechStud = 0;
+	var averageHseStud = 0;
+
+	for( i in data[head][generation]["students"] ){
+		//acessa o array de sprints de cada aluna
+		if (data[head][generation]['students'][i]["sprints"] != undefined){
+			if (data[head][generation]["students"][i]["sprints"].length != 0){
+					if( data[head][generation]["students"][i]["sprints"][sprint]["score"]["tech"] >= techAveragePoints){
+						aboveTechPoints += 1;
+					}
+					if(data[head][generation]["students"][i]["sprints"][sprint]["score"]["hse"] >= hseAveragePoints){
+						aboveHsePoints += 1;
+					}
+				}
+			}
+	}
+
+	var belowAverageTechPoints = allStudents - aboveTechPoints;
+	var belowAverageHsePoints = allStudents - aboveHsePoints;
+/*	console.log("tech above: "+aboveTechPoints);
+		console.log("tech below"+ belowAverageTechPoints);
+	console.log("HSE above"+ aboveHsePoints);
+		console.log("tech below"+ belowAverageHsePoints);*/
+
+	document.getElementById("tech-skills-std-number").innerHTML = "TECH " + aboveTechPoints + " " + ((aboveTechPoints/allStudents)*100).toFixed(2) + "%";
+	document.getElementById("hse-skills-std-number").innerHTML = "HSE  "  + aboveHsePoints+ " " + ((aboveHsePoints/allStudents)*100).toFixed(2) + "%";
+
+	techSkillsChart(aboveTechPoints, belowAverageTechPoints);
+	hseSkillsChart(aboveHsePoints, belowAverageHsePoints);
+
+>>>>>>> 1a42823e262f33bec5a85451cc3dee5fad0882d5
 }
 
 function netPromoScore(){
