@@ -34,6 +34,10 @@ dropHeadMenu.addEventListener("change", loadGenerationMenu);
 var dropGenerationMenu = document.getElementById("select-generation");
 dropGenerationMenu.addEventListener ("change", loadData);
 
+var dropSprintMenu = document.getElementById("select-sprint-skills");
+//dropSprintMenu.addEventListener("change", );
+
+
 window.onload = loadHeadMenu();
 
 function loadHeadMenu() {
@@ -66,11 +70,29 @@ function loadGenerationMenu() {
   }
 }
 
+function loadSprintMenu() {
+  var head = dropHeadMenu.value;
+  var generation = dropGenerationMenu.value;
+  dropSprintMenu.innerHTML = "";
+
+  var sprint = document.createElement("option");
+  sprint.innerHTML = "Selecione o sprint";
+  sprint.value = "none";
+  dropSprintMenu.appendChild(sprint);
+  var totalSprints = data[head][generation]['ratings'].length;
+
+  for(var i = 0; i < totalSprints; i++){
+    var sprintItem = document.createElement("option");
+    sprintItem.innerHTML = "Sprint " + i;
+    sprintItem.value = i;
+    dropSprintMenu.appendChild(sprintItem);
+  }
+}
+
 function loadData() {
-  //loadTechSkillsMenu();
-  //loadHseSkillsMenu();
   enrollmentStudents();
   achievements();
+  loadSprintMenu();
   netPromoScore();
   mentorRating();
   jedisRating();
