@@ -19,8 +19,12 @@ function closeNav() {
 
 // Load the Visualization API and the corechart package.
 google.charts.load('current', {'packages':['corechart']});
-//google.charts.setOnLoadCallback(drawChart);
-//drawChart(activeStudents, quittingStudents);
+google.charts.setOnLoadCallback(drawChart);
+
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawBasic);
+
+
 
 
 //Menu dinamico de sedes e geracoes
@@ -31,7 +35,6 @@ var dropGenerationMenu = document.getElementById("select-generation");
 dropGenerationMenu.addEventListener ("change", loadData);
 
 window.onload = loadHeadMenu();
-//window.onload = loadGenerationMenu();
 
 function loadHeadMenu() {
   var option = document.createElement("option");
@@ -106,17 +109,33 @@ function enrollmentStudents() {
   document.getElementById("quitting-students").innerHTML = "Alunas desistentes: " + rateQuitStudent.toFixed(2) + "%";
   var activeStudents = allStudents - quittingStudents;
 
-
 	drawChart(activeStudents, quittingStudents);
 
+
+
+
+
+
+
   //grafico para alunas ativas e alunas desistentes
-
-
-
 }
 
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses'],
+          ['2004',  1000,      400],
+          ['2005',  1170,      460],
+          ['2006',  660,       1120],
+          ['2007',  1030,      540]
+        ]);
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+        chart.draw(data, {width: 400, height: 240, title: 'Company Performance'});
+}
+
+
+
 
 function achievements() {
   var head = dropHeadMenu.value;
@@ -129,6 +148,7 @@ function achievements() {
 	var sumHsePoints = 0;
 	var averageTechStud = 0;
 	var averageHseStud = 0;
+	var dataArray = [];
 
 	for(var j = 0; j < quantitySprints; j++){
 		sumTechPoints = 0;
@@ -170,8 +190,6 @@ function netPromoScore(){
 		var detractors = data[head][generation]['ratings'][i]['nps']['detractors'];
 		var nps = promoters - detractors;
 		sumNPS += nps;
-
-
 		document.getElementById("nps-sp" + (i + 1)).innerHTML = "NPS sprint "+ (i + 1) + " : " + nps.toFixed(2); 
 	}
 	var averageNPS = (sumNPS / ratingsLength);
