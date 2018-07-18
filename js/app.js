@@ -148,11 +148,15 @@ function achievements() {
 		}
 		averageTechStud += sumTechPoints;
 		averageHseStud += sumHsePoints;
+		console.log("tech: "+averageTechStud);
+		console.log("HSE"+ averageHseStud);
 		document.getElementById("tech-skill-sp" + (j + 1)).innerHTML = "Sprint " + (j + 1) + ": " + sumTechPoints + " " + ((sumTechPoints/allStudents)*100).toFixed(2) + "%";
 		document.getElementById("hse-skill-sp" + (j + 1)).innerHTML = "Sprint " + (j + 1) + ": " + sumHsePoints+ " " + ((sumHsePoints/allStudents)*100).toFixed(2) + "%";
 	}
-	document.getElementById("average-tech-stud").innerHTML = "Média Tech: " + (averageTechStud/4);
-	document.getElementById("average-hse-stud").innerHTML = "Média HSE: " + (averageHseStud/4);
+	averageTechStud = (averageTechStud/quantitySprints).toFixed(2);
+	averageHseStud = (averageHseStud/quantitySprints).toFixed(2);
+	document.getElementById("average-tech-stud").innerHTML = "Média No. Estud Tech: " + (averageTechStud) + " " +((averageTechStud/allStudents)*100).toFixed(2) + "%";
+	document.getElementById("average-hse-stud").innerHTML = "Média No. Estud HSE: " + (averageHseStud) + " " + ((averageHseStud/allStudents)*100).toFixed(2) + "%";
 }
 
 function netPromoScore(){
