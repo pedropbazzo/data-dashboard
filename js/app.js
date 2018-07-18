@@ -66,6 +66,7 @@ function loadData() {
   enrollmentStudents();
   achievements();
   netPromoScore();
+  mentorRating();
 }
 
 function enrollmentStudents() {
@@ -136,10 +137,23 @@ function netPromoScore(){
 		var promoters = data[head][generation]['ratings'][i]['nps']['promoters'];
 		var detractors = data[head][generation]['ratings'][i]['nps']['detractors'];
 		//console.log(promoters)
-		
+
 	}
 }
 
+function mentorRating(){
+  var headOffice = dropHeadMenu.value;
+  var gen = dropGenerationMenu.value;
+  var sum = 0;
+  for( i in data[headOffice][gen]['ratings']){
+    var mentorScore = parseFloat(data[headOffice][gen]['ratings'][i]["teacher"]);
+    sum = sum + mentorScore;
+    document.getElementById("score-mentor-sp" + (parseInt(i)+1)).innerHTML = "Sprint " + (parseInt(i)+1) + ": " + mentorScore;
+  }
+  average = sum / (parseInt(i) + 1);
+  averagePoints = average * 100;
+  var scoreAverage = document.getElementById("score-average").innerHTML = "A pontuação média é: " + averagePoints;
+}
 
 function loadDevs(){
   var dropHead = dropHeadMenu.value;
