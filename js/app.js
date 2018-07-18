@@ -151,8 +151,8 @@ function achievements() {
 		document.getElementById("tech-skill-sp" + (j + 1)).innerHTML = "Sprint " + (j + 1) + ": " + sumTechPoints + " " + ((sumTechPoints/allStudents)*100).toFixed(2) + "%";
 		document.getElementById("hse-skill-sp" + (j + 1)).innerHTML = "Sprint " + (j + 1) + ": " + sumHsePoints+ " " + ((sumHsePoints/allStudents)*100).toFixed(2) + "%";
 	}
-	document.getElementById("average-tech-stud").innerHTML = "Média Tech" + (averageTechStud/4);
-	document.getElementById("average-hse-stud").innerHTML = "Média HSE" + (averageHseStud/4);
+	document.getElementById("average-tech-stud").innerHTML = "Média Tech: " + (averageTechStud/4);
+	document.getElementById("average-hse-stud").innerHTML = "Média HSE: " + (averageHseStud/4);
 }
 
 function netPromoScore(){
@@ -166,8 +166,7 @@ function netPromoScore(){
 		var nps = promoters - detractors;
 		sumNPS += nps;
 
-		document.getElementById("nps-sp" + (i + 1)).innerHTML = "NPS: " + nps; 
-
+		document.getElementById("nps-sp" + (i + 1)).innerHTML = "NPS sprint "+ (i + 1) + " : " + nps.toFixed(2); 
 	}
 	var averageNPS = (sumNPS / ratingsLength);
 	document.getElementById("average-nps").innerHTML = "média NPS: " + averageNPS; 
