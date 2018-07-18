@@ -67,8 +67,8 @@ function loadGenerationMenu() {
 }
 
 function loadData() {
-	//loadTechSkillsMenu();
-	//loadHseSkillsMenu();
+  //loadTechSkillsMenu();
+  //loadHseSkillsMenu();
   enrollmentStudents();
   achievements();
   netPromoScore();
@@ -77,19 +77,19 @@ function loadData() {
 }
 
 function drawChart(activeStudents, quittingStudents) {
-	// var chart = new google.visualization.DataTable(document.getElementById("drawChart"));
-	var data = google.visualization.arrayToDataTable([
-		['Status','Total'],
-		['Ativas', activeStudents],
-		['Inativas', quittingStudents]
-	]);
+  // var chart = new google.visualization.DataTable(document.getElementById("drawChart"));
+  var data = google.visualization.arrayToDataTable([
+    ['Status','Total'],
+    ['Ativas', activeStudents],
+    ['Inativas', quittingStudents]
+  ]);
 
-	var options = {
-          title: 'Grafico 1'
-        };
-       var chart = new google.visualization.PieChart(document.getElementById('drawChart'));
+  var options = {
+    title: 'Grafico 1'
+  };
+  var chart = new google.visualization.PieChart(document.getElementById('drawChart'));
 
-        chart.draw(data, options);
+  chart.draw(data, options);
 }
 
 function enrollmentStudents() {
@@ -121,7 +121,7 @@ function enrollmentStudents() {
 }
 
 
-function drawChart() {
+function drawBasic() {
         var data = google.visualization.arrayToDataTable([
           ['Year', 'Sales', 'Expenses'],
           ['2004',  1000,      400],
@@ -178,10 +178,11 @@ function achievements() {
 	averageHseStud = (averageHseStud/quantitySprints).toFixed(2);
 	document.getElementById("average-tech-stud").innerHTML = "Média No. Estud Tech: " + (averageTechStud) + " " +((averageTechStud/allStudents)*100).toFixed(2) + "%";
 	document.getElementById("average-hse-stud").innerHTML = "Média No. Estud HSE: " + (averageHseStud) + " " + ((averageHseStud/allStudents)*100).toFixed(2) + "%";
+
 }
 
 function netPromoScore(){
-	var head = dropHeadMenu.value;
+  var head = dropHeadMenu.value;
   var generation = dropGenerationMenu.value;
 	var ratingsLength = data[head][generation]['ratings'].length;
 	var sumNPS = 0;
@@ -194,6 +195,7 @@ function netPromoScore(){
 	}
 	var averageNPS = (sumNPS / ratingsLength);
 	document.getElementById("average-nps").innerHTML = "média NPS: " + averageNPS;
+
 }
 
 function mentorRating(){
@@ -225,20 +227,27 @@ function jedisRating(){
 }
 
 function loadDevs(){
-  var dropHead = dropHeadMenu.value;
-  var dropGeneration = dropGenerationMenu.value;
-  var devsList = document.getElementById("developers");
-  devList.innerHTML = "";
-  for(generation in data[head]){
-    for(i in data[head][generation]['students']){
-      var people = document.createElement('div');
-      people.classList.add('people');
-      var img = document.createElement('img');
-      img.classList.add('photo');
-      img.src = data[head][generation]['students'][i]['photo'];
-      devList.appendChild(people);
-      people.appendChild(img);
+  //fazer um laço para pegar o nome das estudantes de cada sede e turma no data.js
+  var studentsInfo = [];
+  for(var head in data){
+    head = data[head];
+    for (var generation in head){
+      generation = data[head][generation];
     }
   }
-
 }
+// var devsList = document.getElementById("developers");
+// devList.innerHTML = "";
+// for(generation in data[head]){
+//   for(var i in data[head][generation]['students']){
+//     var people = document.createElement('div');
+//     people.classList.add('people');
+//     var img = document.createElement('img');
+//     img.classList.add('photo');
+//     img.src = data[head][generation]['students'][i]['photo'];
+//     devList.appendChild(people);
+//     people.appendChild(img);
+//   }
+// }
+
+
