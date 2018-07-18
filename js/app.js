@@ -267,7 +267,7 @@ function loadDevs(){
     }
   }
 }
-<<<<<<< HEAD
+
 // var devsList = document.getElementById("developers");
 // devList.innerHTML = "";
 // for(generation in data[head]){
@@ -283,5 +283,3 @@ function loadDevs(){
 // }
 
 
-=======
->>>>>>> 763efd4a4d89378d88f203d4c1aeb9758de8fe09
