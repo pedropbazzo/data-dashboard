@@ -351,7 +351,6 @@ function loadDevs(){
           name.innerHTML = data[head][generation]['students'][i]['name'];
           var position = document.createElement('h5');
           position.innerHTML = "Frontend Developer";
-          devInfo.appendChild(name);
           people.appendChild(img);
           people.appendChild(devInfo);
           devInfo.appendChild(name);
