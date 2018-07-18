@@ -341,12 +341,15 @@ function loadDevs(){
           people.classList.add('people');
           var img = document.createElement('img');
           img.classList.add('photo');
+          var name = document.createElement('p');
+          name.innerHTML = data[head][generation]['students'][i]['name'];
           img.src = data[head][generation]['students'][i]['photo'];
           if(data[head][generation]['students'][i]['photo'] == undefined ||data[head][generation]['students'][i]['photo'] == "" ){
             img.src = 'assets/images/sem-photo.jpg';
           }
           //people.innerHTML = img;
           people.appendChild(img);
+          people.appendChild(name);
           devsList.appendChild(people);
         }
       }
