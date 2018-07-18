@@ -116,6 +116,35 @@ function drawChart(activeStudents, quittingStudents) {
   chart.draw(data);
 }
 
+function techSkillsChart(aboveTechPoints, belowAverageTechPoints) {
+  var data = google.visualization.arrayToDataTable([
+    ['Status','Total'],
+    ['Atingiram a meta', aboveTechPoints],
+    ['Nao atingiram', belowAverageTechPoints]
+  ]);
+
+ /* var options = {
+    title: 'Grafico 1'
+  };*/
+  var chart = new google.visualization.PieChart(document.getElementById('techSkillsChart'));
+  chart.draw(data);
+}
+
+function hseSkillsChart(aboveHsePoints, belowAverageHsePoints) {
+  var data = google.visualization.arrayToDataTable([
+    ['Status','Total'],
+    ['Atingiram a meta', aboveHsePoints],
+    ['Nao atingiram', belowAverageHsePoints]
+  ]);
+
+ /* var options = {
+    title: 'Grafico 1'
+  };*/
+  var chart = new google.visualization.PieChart(document.getElementById('hseSkillsChart'));
+  chart.draw(data);
+}
+
+
 function enrollmentStudents() {
   var headSelected = dropHeadMenu.value;
   var generationSelected = dropGenerationMenu.value;
@@ -139,20 +168,20 @@ function enrollmentStudents() {
 }
 
 
-function drawBasic(array) {
-				var dataArray = [];
-				dataArray = array;
+// function drawBasic(array) {
+// 				var dataArray = [];
+// 				dataArray = array;
 
-        var data = google.visualization.arrayToDataTable([
-        	[]
-        	]);
+//         var data = google.visualization.arrayToDataTable([
+//         	[]
+//         	]);
 
-        //var googleChartData = google.visualization.arrayToDataTable($.parseJSON(chartData));
+//         //var googleChartData = google.visualization.arrayToDataTable($.parseJSON(chartData));
 
 
-        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-        chart.draw(data, {width: 400, height: 240, title: 'Company Performance'});
-}
+//         var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+//         chart.draw(data, {width: 400, height: 240, title: 'Company Performance'});
+// }
 
 
 
@@ -247,15 +276,16 @@ function studentsPoints() {
 
 	var belowAverageTechPoints = allStudents - aboveTechPoints;
 	var belowAverageHsePoints = allStudents - aboveHsePoints;
-	console.log("tech above: "+aboveTechPoints);
+/*	console.log("tech above: "+aboveTechPoints);
 		console.log("tech below"+ belowAverageTechPoints);
 	console.log("HSE above"+ aboveHsePoints);
-		console.log("tech below"+ belowAverageHsePoints);
+		console.log("tech below"+ belowAverageHsePoints);*/
 
 	document.getElementById("tech-skills-std-number").innerHTML = "TECH " + aboveTechPoints + " " + ((aboveTechPoints/allStudents)*100).toFixed(2) + "%";
 	document.getElementById("hse-skills-std-number").innerHTML = "HSE  "  + aboveHsePoints+ " " + ((aboveHsePoints/allStudents)*100).toFixed(2) + "%";
 
-	//drawBasic(dataArray);
+	techSkillsChart(aboveTechPoints, belowAverageTechPoints);
+	hseSkillsChart(aboveHsePoints, belowAverageHsePoints);
 
 }
 
