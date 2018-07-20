@@ -172,11 +172,9 @@ function enrollmentStudents() {
 /*function drawBasic(array) {
 				var dataArray = [];
 				dataArray = array;
-
         var data = google.visualization.arrayToDataTable([
         	[]
         	]);
-
         //var googleChartData = google.visualization.arrayToDataTable($.parseJSON(chartData));
         var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
         chart.draw(data, {width: 400, height: 240, title: 'Company Performance'});
@@ -338,13 +336,13 @@ function studentsSatisfaction(){
 		lowSatisf = data[head][generation]["ratings"][i]["student"]["no-cumple"];
 		normalSatisf = data[head][generation]["ratings"][i]["student"]["cumple"];
 		highSatisf = data[head][generation]["ratings"][i]["student"]["supera"];
-		
+
 		var satisfied = (normalSatisf + highSatisf);
 		var notSatisfied = lowSatisf;
 		//console.log(satisfied);
 		//console.log(notSatisfied);
 		document.getElementById("satisf-sp"+(i+1)).innerHTML = "Sprint " + (i+1) + ":" + satisfied + "%";
-	}	
+	}
 }
 
 
@@ -376,6 +374,7 @@ function loadDevs(){
           name.innerHTML = data[head][generation]['students'][i]['name'];
           var position = document.createElement('h5');
           position.innerHTML = "Frontend Developer";
+          devInfo.appendChild(name);
           people.appendChild(img);
           people.appendChild(devInfo);
           devInfo.appendChild(name);

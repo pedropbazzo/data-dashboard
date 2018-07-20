@@ -1,4 +1,4 @@
-dev-info/*
+/*
 * Estilos de tu proyecto
 */
 body{
@@ -358,8 +358,7 @@ footer{
   width: 100%;
   padding: 30px;
   position: relative;
-  bottom: : 0;
-  margin-top: 60px;
+  border-bottom: 0;
 }
 .brand-footer{
   text-align: left;
