@@ -1,6 +1,9 @@
 /*
 * Funcionalidad de tu producto
 */
+ 
+read core logic latest
+
 
 var techMaxPoints = 1800;
 var hseMaxPoints = 1200;
